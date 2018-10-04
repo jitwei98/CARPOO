@@ -1,10 +1,9 @@
 <?php   session_start();  ?>
 <?php
-if(isset($_SESSION['use']))   // Checking whether the session is already there or not if 
-                              // true then header redirect it to the home page directly 
- {
-    header("Location: /carpool/"); 
- }
+	if(isset($_SESSION['use']))
+	{
+		header("Location: /carpool/home"); 
+	}	
 ?>
 <!DOCTYPE html>
 <html>
