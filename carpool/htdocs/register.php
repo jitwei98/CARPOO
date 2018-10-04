@@ -14,7 +14,7 @@
 		  <a href="/carpool/home"><h1>Car Pooling</h1></a>
 		</div>
 		<div class="w3-container">
-			<form class="w3-container" action="/carpool/home" method="POST">
+			<form class="w3-container" method="POST">
 				<h1>Register</h1>
 			    <p>Please fill in this form to create an account.</p>
 			    <label for="phone_number"><b>Phone Number</b></label>
@@ -50,16 +50,15 @@
 		// Connect to the database. Please change the password in the following line accordingly
     	$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
     	if(isset($_POST['register'])) {
-    		$uname = $_POST['name'];
     		$pword = $_POST['password'];
     		$phash = password_hash($pword, PASSWORD_DEFAULT);
 
-	    	$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$uname', '$_POST[gender]', '$_POST[dob]', '$phash')");
+	    	$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$pword')");
 	    	if (!$res) {
 	            echo "Register failed!!";
 	        } 
 	        else {
-	            echo "Register successful!";
+	            header("Location: /carpool/home");
 	        }
     	}
 		?>

@@ -1,14 +1,3 @@
-<?PHP
-
-session_start();
-
-if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
-
-header ("Location: login.php");
-
-}
-
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,7 +14,7 @@ header ("Location: login.php");
 		  <a href="/carpool/home"><h1>Car Pooling</h1></a>
 		</div>
 		<div class="w3-container">
-			<form class="w3-container" action="/carpool/home" method="POST">
+			<form class="w3-container" method="POST">
 				<h1>Login</h1>
 			    <label for="email"><b>Email</b></label>
 			    <input type="text" placeholder="Enter Email" name="email" required>
@@ -44,13 +33,23 @@ header ("Location: login.php");
 		// Connect to the database. Please change the password in the following line accordingly
     	$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
     	if (isset($_POST['login'])) {
-		    $result = pg_query($db, "SELECT * FROM app_user where email = '$_POST[email]' and password = '$POST_['password']");
-    		if (!result) {
-    			$row    = pg_fetch_assoc($result);
-    		}
-    		else {
-    			echo "Login Failed!"
-    		}
+    		$pword = $_POST['password'];
+		    $result = pg_query($db, "SELECT * FROM app_user where email = '$_POST[email]' and password = '$_POST[password]'");
+		    if(!$result) {
+		    	echo "Login Failed!";
+		    }
+		    else {
+				$phash = $row[password];
+				// if(password_verify($pword, $phash)) {
+				// 	header("Location: /carpool/home");
+				// }
+				if($pword == $phash) {
+					header("Location: /carpool/home");
+				}
+				else {
+					echo $phash;
+				}
+		    }
     	}
 		?>
 	</body>
