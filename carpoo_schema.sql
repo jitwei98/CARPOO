@@ -11,7 +11,7 @@ CREATE TABLE app_user (
 	gender CHAR(1) NOT NULL CONSTRAINT gender CHECK (gender = 'M' OR gender = 'F'),
 	dob DATE NOT NULL,
 	password VARCHAR(64) NOT NULL
-)
+);
 
 CREATE TABLE drive (
 	driver CHAR(8),
@@ -19,7 +19,7 @@ CREATE TABLE drive (
 	PRIMARY KEY (driver, car),
 	FOREIGN KEY (driver) REFERENCES app_user(phone_number),
 	FOREIGN KEY (car) REFERENCES car(plate_number)
-)
+);
 
 CREATE TABLE offer(
 	date_of_ride DATE,
