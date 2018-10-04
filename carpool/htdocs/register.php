@@ -1,3 +1,4 @@
+<?php  session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +12,7 @@
 	</head>
 	<body>
 		<div class="w3-container w3-black">
-		  <a href="/carpool/home"><h1>Car Pooling</h1></a>
+	  		<a href="/carpool/home"><h1>Car Pooling</h1></a>
 		</div>
 		<div class="w3-container">
 			<form class="w3-container" method="POST">

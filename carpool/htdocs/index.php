@@ -1,3 +1,11 @@
+<?php   session_start();  ?>
+<?php
+if(isset($_SESSION['use']))   // Checking whether the session is already there or not if 
+                              // true then header redirect it to the home page directly 
+ {
+    header("Location: /carpool/"); 
+ }
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +19,7 @@
 	</head>
 	<body>
 		<div class="w3-container w3-black">
-		  <a href="/carpool/home"><h1>Car Pooling</h1></a>
+			<a href="/carpool/home"><h1>Car Pooling</h1></a>
 		</div>
 		<div class="w3-container">
 			<form class="w3-container" method="POST">
@@ -22,7 +30,7 @@
 			    <label for="password"><b>Password</b></label>
 			    <input type="password" placeholder="Enter Password" name="password" required>
 			    <hr>
-	      		<input type="submit" name="login" value="login">
+	      		<input type="submit" name="login" value="Login">
 	      		<button><a href="/carpool/register">Register</a></button>
 	      		<label>
 	        		<input type="checkbox" checked="checked" name="remember"> Remember me
@@ -30,11 +38,13 @@
 			</form>
 		</div>
 		<?php
-		// Connect to the database. Please change the password in the following line accordingly
-    	$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
-    	if (isset($_POST['login'])) {
-    		$pword = $_POST['password'];
+		$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+		if (isset($_POST['login'])) {
+			$email = $_POST['email'];
+			$pword = $_POST['password'];
 		    $result = pg_query($db, "SELECT * FROM app_user where email = '$_POST[email]' and password = '$_POST[password]'");
+		    $row = pg_fetch_assoc($result);
+
 		    if(!$result) {
 		    	echo "Login Failed!";
 		    }
@@ -44,13 +54,14 @@
 				// 	header("Location: /carpool/home");
 				// }
 				if($pword == $phash) {
+					$_SESSION['use']=$email;
 					header("Location: /carpool/home");
 				}
 				else {
 					echo $phash;
 				}
 		    }
-    	}
+		}
 		?>
 	</body>
 </html>
