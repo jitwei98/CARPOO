@@ -4,7 +4,7 @@ CREATE TABLE car (
 	color VARCHAR(16) NOT NULL
 );
 
-CREATE TABLE user (
+CREATE TABLE app_user (
 	phone_number VARCHAR(10) PRIMARY KEY,
 	email VARCHAR(32) UNIQUE NOT NULL,
 	name VARCHAR(32) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE drive (
 	driver VARCHAR(10),
 	car VARCHAR(8),
 	PRIMARY KEY (driver, car),
-	FOREIGN KEY (driver) REFERENCES user(phone_number),
+	FOREIGN KEY (driver) REFERENCES app_user(phone_number),
 	FOREIGN KEY (car) REFERENCES car(plate_number)
 )
 
@@ -28,7 +28,7 @@ CREATE TABLE offer(
 	origin VARCHAR(64) NOT NULL,
 	destination VARCHAR(64) NOT NULL,
 	PRIMARY KEY (date_of_ride, time_of_ride, driver),
-	FOREIGN KEY (driver) REFERENCES user(phone_number)
+	FOREIGN KEY (driver) REFERENCES app_user(phone_number)
 );
 
 CREATE TABLE driver (
@@ -49,6 +49,6 @@ CREATE TABLE bid (
 	CONSTRAINT status CHECK (status = 'pending' OR status = 'successful' OR status = 'unsucessful'),
 	PRIMARY KEY (date_of_ride, time_of_ride, driver, passenger),
 	FOREIGN KEY (date_of_ride, time_of_ride, driver) REFERENCES offer(date_of_ride, time_of_ride, driver),
-	FOREIGN KEY (passenger) REFERENCES user(phone_number),
+	FOREIGN KEY (passenger) REFERENCES app_user(phone_number),
 	CHECK(driver <> passenger)
 );
