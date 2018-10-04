@@ -28,10 +28,10 @@
 			    <input type="text" placeholder="Enter Car Plate Number" name="plate_number" required>
 			    <hr>
 			    <label for="model"><b>Car Model : </b></label>
-			    <input type="password" placeholder="Enter Car Model" name="model" required>
+			    <input type="text" placeholder="Enter Car Model" name="model" required>
 			    <hr>
 			    <label for="colour"><b>Car Colour : </b></label>
-			    <input type="password" placeholder="Enter Car Colour" name="colour" required>
+			    <input type="text" placeholder="Enter Car Colour" name="colour" required>
 			    <hr>
 	      		<input type="submit" name="driver_reg" value="Register as Driver">
 			</form>
