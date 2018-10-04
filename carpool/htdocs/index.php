@@ -31,7 +31,7 @@ if(isset($_SESSION['use']))   // Checking whether the session is already there o
 			    <input type="password" placeholder="Enter Password" name="password" required>
 			    <hr>
 	      		<input type="submit" name="login" value="Login">
-	      		<button><a href="/carpool/register">Register</a></button>
+	      		<button><a href="register.php">Register</a></button>
 	      		<label>
 	        		<input type="checkbox" checked="checked" name="remember"> Remember me
 	      		</label>
