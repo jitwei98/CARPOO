@@ -54,7 +54,7 @@
     		$pword = $_POST['password'];
     		$phash = password_hash($pword, PASSWORD_DEFAULT);
 
-	    	$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$pword')");
+	    	$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$phash')");
 	    	if (!$res) {
 	            echo "Register failed!!";
 	        } 
