@@ -44,3 +44,14 @@ CREATE TABLE bid (
 	FOREIGN KEY (passenger) REFERENCES app_user(email),
 	CHECK(driver <> passenger)
 );
+
+	   								if(pg_num_rows($result) == 0) {
+	   									echo "No current bids";
+		   								echo '</tr>';
+		   								echo '</thead';
+	   								}
+	   								else {
+	   									while($row = pg_fetch_assoc($result)) {
+	   										
+	   									}
+	   								}

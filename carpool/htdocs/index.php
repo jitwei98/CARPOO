@@ -41,7 +41,7 @@
 		if (isset($_POST['login'])) {
 			$email = $_POST['email'];
 			$pword = $_POST['password'];
-		    $result = pg_query($db, "SELECT * FROM app_user where email = '$_POST[email]' and password = '$_POST[password]'");
+		    $result = pg_query($db, "SELECT * FROM app_user where email = '$_POST[email]'");
 		    $row = pg_fetch_assoc($result);
 
 		    if(!$result) {
@@ -49,15 +49,16 @@
 		    }
 		    else {
 				$phash = $row[password];
-				// if(password_verify($pword, $phash)) {
-				// 	header("Location: /carpool/home");
-				// }
-				if($pword == $phash) {
+				if(password_verify($pword, $phash)) {
 					$_SESSION['use']=$email;
 					header("Location: /carpool/home");
 				}
+				// if($pword == $phash) {
+				// 	$_SESSION['use']=$email;
+				// 	header("Location: /carpool/home");
+				// }
 				else {
-					echo $phash;
+					echo "Login Failed!";
 				}
 		    }
 		}
