@@ -38,7 +38,7 @@
 						$date_curr = date("Y/m/d");
 						$time_curr = date("h/i/sa");
 						$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
-					    $result = pg_query($db, "SELECT * FROM offer WHERE (date_of_ride = '$date_curr') OR (date_of_ride > '$date_curr')");
+					    $result = pg_query($db, "SELECT * FROM offer WHERE (date_of_ride = '$date_curr' AND time_of_ride > '$time_curr') OR (date_of_ride > '$date_curr')");
 					    if(pg_num_rows($result) == 0) {
 					    	echo "No open offers currently.";
 					    	echo '</tr>';

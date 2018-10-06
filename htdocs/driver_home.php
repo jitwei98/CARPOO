@@ -22,13 +22,8 @@
   			<a href="logout.php" style="float:right;">Log Out</a>
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-<<<<<<< HEAD:carpool/htdocs/driver_home.php
 		  <a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Profile</a>
-=======
-		  <a href="#" class="w3-bar-item w3-button">Initiate Car Pool</a>
-		  <a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
->>>>>>> da9337209d3ed60454657144d59e2b1ac8f8d4ab:htdocs/driver_home.php
 		  <a href="#" class="w3-bar-item w3-button">Driver Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
