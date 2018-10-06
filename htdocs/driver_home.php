@@ -22,8 +22,8 @@
   			<a href="logout.php" style="float:right;">Log Out</a>
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		  <a href="#" class="w3-bar-item w3-button">Initiate Car Pool</a>
-		  <a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
+		  <a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>
+		  <a href="#" class="w3-bar-item w3-button">Car Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Driver Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
@@ -33,16 +33,17 @@
 				<table class="w3-table-all w3-hoverable">
 				<thead>
 					<tr class="w3-black">
-						<h2>
+						<h3>
 							<?php
 								$driver = $_SESSION['use'];
+								date_default_timezone_set('Asia/Singapore');
 								$date_curr = date("Y/m/d");
 								$time_curr = date("h/i/sa");
 								$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
 							    $result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and date_of_ride = '$date_curr' and time_of_ride > '$time_curr'");
 		   						if (pg_num_rows($result) == 0) {
-		   							echo "No open offer currently.";
-		   							echo '</h2>';
+		   							echo "No open offer currently";
+		   							echo '</h3>';
 		   							echo '</tr>';
 		   							echo '</thead>';
 		   						}
@@ -58,37 +59,27 @@
 	   								$res = pg_query($db, "SELECT * FROM bid where driver='$driver' and status='pending'");
 	   								echo '<thead>';
 	   								echo '<tr class="w3-light-grey">';
-	   								if(pg_num_rows($result) == 0) {
+	   								if(pg_num_rows($res) == 0) {
 	   									echo "No current bids";
 		   								echo '</tr>';
 		   								echo '</thead';
 	   								}
 	   								else {
-	   									while($row = pg_fetch_assoc($result)) {
+	   									while($row = pg_fetch_assoc($res)) {
 	   										//fill in code for printing bid details
+	   										echo '<tr>';
+	   										echo '<td>';
+	   										echo $row['passenger'];
+	   										echo '</td>';
+	   										echo '<td>';
+	   										echo $row['price'];
+	   										echo '</td>';
+	   										echo '</tr>';
 	   									}
+	   									echo '</table>';
 	   								}
 		   						}
 							?>
-			    <thead>
-			      <tr class="w3-light-grey">
-			        <th>Passenger</th>
-			        <th>Bid Amount</th>
-			      </tr>
-			    </thead>
-			    <tr>
-			      <td>Jill</td>
-			      <td>50</td>
-			    </tr>
-			    <tr>
-			      <td>Eve</td>
-			      <td>94</td>
-			    </tr>
-			    <tr>
-			      <td>Adam</td>
-			      <td>67</td>
-			    </tr>
-			  </table>
 			</div>
 		</div>
 	</body>
