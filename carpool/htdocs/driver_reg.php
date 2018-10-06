@@ -1,9 +1,18 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-   {
-       header("Location: /carpool");  
-   }
+	if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
+	{
+		header("Location: /carpool");  
+	}
+
+	// If user is already a driver redirect to home page
+	$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+	$user = $_SESSION['use'];
+	$isRegisteredDriver = pg_fetch_row(pg_query($db, "SELECT * FROM drive WHERE driver = '$user'"));
+	// echo $isRegisteredDriver[0];
+	if ($isRegisteredDriver) {
+		header("Location: /carpool/home");
+	}
 ?>
 <!DOCTYPE html>
 <html>
