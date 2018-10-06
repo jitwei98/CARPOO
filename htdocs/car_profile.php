@@ -1,0 +1,123 @@
+<?php   session_start();  ?>
+<?php
+  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
+  {
+  	header("Location: /carpool");  
+  }
+  $db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+  $driver = $_SESSION['use'];
+  ?>
+  <!DOCTYPE html>
+  <html>
+  <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  	<style>
+  	a {
+  		text-decoration: none;
+  	}
+  </style>
+</head>
+<body>
+	<div class="w3-container w3-black">
+		<a href="/carpool/home"><h1>Car Pooling</h1></a>
+		<a href="logout.php" style="float:right;">Log Out</a>
+	</div>
+	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
+		<a href="#" class="w3-bar-item w3-button">Initiate Car Pool</a>
+		<a href="#" class="w3-bar-item w3-button">Car Profile</a>
+		<a href="#" class="w3-bar-item w3-button">Driver Profile</a>
+		<a href="#" class="w3-bar-item w3-button">Car Pool History</a>
+	</div>
+	<div style="margin-left: 10%">
+		<div class="w3-container">
+			<h1>Car Profile</h1>
+			<form class="w3-container" method="POST">
+				<table class="w3-table-all w3-hoverable">
+					<?php 
+					$query_car_details = "SELECT c.plate_number, c.model, c.color FROM drive d, car c WHERE d.driver = '$driver' AND d.car = c.plate_number";
+					$result = pg_fetch_row(pg_query($db, $query_car_details));
+						// echo $result == null;
+						// foreach ($result as $value) {
+    		// 				echo "$value <br>";
+						// }
+					?>
+					<tr>
+						<td><label for="plate_number"><b>Plate Number : </b></label></td>
+						<!-- 						<td><input type="text" placeholder="Enter Car Plate Number" name="plate_number"></td> -->
+						<?php 
+						echo '<td><input type="text" placeholder="'.$result[0].'" name="plate_number_updated"></td>';
+						?>
+					</tr>
+					<tr>
+						<td><label for="model"><b>Model : </b></label></td>
+						<!-- <td><input type="text" placeholder="Enter Car Model" name="model"></td> -->
+						<?php 
+						echo '<td><input type="text" placeholder="'.$result[1].'" name="model_updated"></td>';
+						?>
+					</tr>
+					<tr>
+						<td><label for="color"><b>Color : </b></label></td>
+						<!-- <td><input type="text" placeholder="Enter Car Color" name="color"></td> -->
+						<?php 
+						echo '<td><input type="text" placeholder="'.$result[2].'" name="color_updated"></td>';
+						?>
+					</tr>
+				</table>
+				<input type="submit" name="edit" value="Submit">
+			</form>
+
+			<h1>
+				<?php 
+				function isModified() {
+					return !empty($_POST[plate_number_updated]) || !empty($_POST[model_updated]) || !empty($_POST[color_updated]);
+				}
+
+				function update_car() {
+					$plate_number = !empty($_POST[plate_number_updated]) ? $_POST[plate_number_updated] : $result[0];
+					$model = !empty($_POST[model_updated]) ? $_POST[model_updated] : $result[1];
+					$color = !empty($_POST[color_updated]) ? $_POST[color_updated] : $result[2];
+					$query = "";
+					echo $_POST[plate_number_updated] . "<br>" . $model . "<br>" . $color . "<br>";
+					// if (!empty($_POST[plate_number])) {
+					// 	$query .= "INSERT INTO car VALUES ('$plate_number', '$model', '$color');";
+					// 	$query .= "UPDATE drive SET car='$_POST[plate_number]' WHERE driver='$driver';";
+					// } else {
+// if (!empty($_POST[model_updated])) {
+// 	$query .= "UPDATE car SET model='$_POST[model_updated]' WHERE plate_number='$plate_number';";
+// }
+// if (!empty($_POST[color])) {
+// 	$query .= "UPDATE car SET color='$_POST[color]' WHERE driver='$driver';";
+// }
+					// 	$query .= "UPDATE car SET plate_number='$plate_number', model='$model', color='$color';";
+					// }
+
+
+			// $query .= "DELETE FROM car WHERE plate_number='$result[0]';";
+			// $query .= "INSERT INTO car VALUES ('$plate_number', '$model', '$color');";
+			// $query = "UPDATE drive SET car='$_POST[plate_number]' WHERE driver='$driver';";
+			// echo $pg_last_error($db).'<br>';
+					$num = pg_affected_rows(pg_query($db, $query));
+					// echo pg_last_error($db);
+					echo "update_car()<br>";
+					echo $num == null . "<br>";
+					return $num;
+				}
+				// echo "isit".(!empty($_POST['edit']) == true);
+				// echo "something";
+				if (!empty($_POST['edit']) && isModified()) {
+					if (update_car()) {
+						echo "Car profile successfully updated!";
+					} else {
+						echo "Error updating car profile!";
+					}
+				}
+				?>
+			</h1>
+		</div>
+	</div>
+	<h1>123
+
+	</h1>
+</body>
+</html>

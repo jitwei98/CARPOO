@@ -1,9 +1,18 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-   {
-       header("Location: /carpool");  
-   }
+	if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
+	{
+		header("Location: /carpool");  
+	}
+
+	// If user is already a driver redirect to home page
+	$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+	$user = $_SESSION['use'];
+	$isRegisteredDriver = pg_fetch_row(pg_query($db, "SELECT * FROM drive WHERE driver = '$user'"));
+	// echo $isRegisteredDriver[0];
+	if ($isRegisteredDriver) {
+		header("Location: /carpool/home");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,8 +39,8 @@
 			    <label for="model"><b>Car Model : </b></label>
 			    <input type="text" placeholder="Enter Car Model" name="model" required>
 			    <hr>
-			    <label for="colour"><b>Car Colour : </b></label>
-			    <input type="text" placeholder="Enter Car Colour" name="colour" required>
+			    <label for="color"><b>Car color : </b></label>
+			    <input type="text" placeholder="Enter Car color" name="color" required>
 			    <hr>
 	      		<input type="submit" name="driver_reg" value="Register as Driver">
 			</form>
@@ -40,7 +49,7 @@
 		$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
     	if(isset($_POST['driver_reg'])) {
     		$driver = $_SESSION['use'];
-    		$res = pg_query($db, "INSERT INTO car values ('$_POST[plate_number]', '$_POST[model]', '$_POST[colour]')");
+    		$res = pg_query($db, "INSERT INTO car values ('$_POST[plate_number]', '$_POST[model]', '$_POST[color]')");
 	    	$result = pg_query($db, "INSERT INTO drive VALUES ('$driver', '$_POST[plate_number]')");
 	    	if (!$result || !$res) {
 	            echo "Driver registration failed!!";
