@@ -4,6 +4,15 @@
    {
        header("Location: /carpool");  
    }
+// If user is already a driver redirect to home page
+   $db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+   $user = $_SESSION['use'];
+   $isRegisteredDriver = pg_fetch_row(pg_query($db, "SELECT * FROM drive WHERE driver = '$user'"));
+// echo $isRegisteredDriver[0];
+   if ($isRegisteredDriver) {
+   	header("Location: /carpool/home");
+   }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,9 +46,9 @@
 			</form>
 		</div>
 		<?php
-		$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
-    	if(isset($_POST['driver_reg'])) {
+    	if (isset($_POST['driver_reg'])) {
     		$driver = $_SESSION['use'];
+<<<<<<< HEAD
     		$plate_number = $_POST[plate_number];
     		$res = pg_query($db, "INSERT INTO car VALUES ('$plate_number', '$_POST[model]', '$_POST[color]')");
     		if (!res) {
@@ -55,6 +64,17 @@
 	        	}
     		}
     	}   
+=======
+    		$res = pg_query($db, "INSERT INTO car values ('$_POST[plate_number]', '$_POST[model]', '$_POST[color]')");
+	    	$result = pg_query($db, "INSERT INTO drive VALUES ('$driver', '$_POST[plate_number]')");
+	    	if (!$result || !$res) {
+	            echo "Driver registration failed!!";
+	        } 
+	        else {
+	            header("Location: /carpool/home");
+	        }
+        }
+>>>>>>> d484d9f949264a4223ca5bfb3f7b7a7bd1ecb11f
     	?>
 	</body>
 </html>
