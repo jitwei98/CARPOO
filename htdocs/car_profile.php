@@ -89,17 +89,16 @@
 						$query .= "UPDATE drive SET car='$plate_number' WHERE driver='$driver';";
 						$query .= "DELETE FROM  car WHERE plate_number='$row[plate_number]';";
 					} else {
-						echo "else<br>";
 						$query .= "UPDATE car SET plate_number='$plate_number', model='$model', color='$color';";
 					}
 
-					$num = pg_affected_rows(pg_query($db, $query));
-					return $num;
+					return pg_query($db, $query);
 				}
 				
 				if (!empty($_POST['edit']) && isModified()) {
 					if (update_car($db, $driver, $row)) { // affected rows > 0
-						echo "Car profile successfully updated!";
+						// echo "Car profile successfully updated!";
+						header("Location: /carpool/car_profile");
 					} else {
 						echo "Error updating car profile!";
 					}
