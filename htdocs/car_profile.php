@@ -36,7 +36,7 @@
 				<table class="w3-table-all w3-hoverable">
 					<?php 
 					$query_car_details = "SELECT c.plate_number, c.model, c.color FROM drive d, car c WHERE d.driver = '$driver' AND d.car = c.plate_number";
-					$result = pg_fetch_row(pg_query($db, $query_car_details));
+					$row = pg_fetch_assoc(pg_query($db, $query_car_details));
 						// echo $result == null;
 						// foreach ($result as $value) {
     		// 				echo "$value <br>";
@@ -46,21 +46,21 @@
 						<td><label for="plate_number"><b>Plate Number : </b></label></td>
 						<!-- 						<td><input type="text" placeholder="Enter Car Plate Number" name="plate_number"></td> -->
 						<?php 
-						echo '<td><input type="text" placeholder="'.$result[0].'" name="plate_number_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row[plate_number].'" name="plate_number_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="model"><b>Model : </b></label></td>
 						<!-- <td><input type="text" placeholder="Enter Car Model" name="model"></td> -->
 						<?php 
-						echo '<td><input type="text" placeholder="'.$result[1].'" name="model_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row[model].'" name="model_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="color"><b>Color : </b></label></td>
 						<!-- <td><input type="text" placeholder="Enter Car Color" name="color"></td> -->
 						<?php 
-						echo '<td><input type="text" placeholder="'.$result[2].'" name="color_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row[color].'" name="color_updated"></td>';
 						?>
 					</tr>
 				</table>
@@ -73,40 +73,31 @@
 					return !empty($_POST[plate_number_updated]) || !empty($_POST[model_updated]) || !empty($_POST[color_updated]);
 				}
 
-				function update_car() {
-					$plate_number = !empty($_POST[plate_number_updated]) ? $_POST[plate_number_updated] : $result[0];
-					$model = !empty($_POST[model_updated]) ? $_POST[model_updated] : $result[1];
-					$color = !empty($_POST[color_updated]) ? $_POST[color_updated] : $result[2];
+				function update_car($db, $driver, $row) {
+					$plate_number = !empty($_POST[plate_number_updated]) ? $_POST[plate_number_updated] : $row[plate_number];
+					$model = !empty($_POST[model_updated]) ? $_POST[model_updated] : $row[model];
+					$color = !empty($_POST[color_updated]) ? $_POST[color_updated] : $row[color];
 					$query = "";
-					echo $_POST[plate_number_updated] . "<br>" . $model . "<br>" . $color . "<br>";
-					// if (!empty($_POST[plate_number])) {
-					// 	$query .= "INSERT INTO car VALUES ('$plate_number', '$model', '$color');";
-					// 	$query .= "UPDATE drive SET car='$_POST[plate_number]' WHERE driver='$driver';";
-					// } else {
-// if (!empty($_POST[model_updated])) {
-// 	$query .= "UPDATE car SET model='$_POST[model_updated]' WHERE plate_number='$plate_number';";
-// }
-// if (!empty($_POST[color])) {
-// 	$query .= "UPDATE car SET color='$_POST[color]' WHERE driver='$driver';";
-// }
-					// 	$query .= "UPDATE car SET plate_number='$plate_number', model='$model', color='$color';";
-					// }
+					// echo $plate_number . "<br>" . $model . "<br>" . $color . "<br>";
+					
+					if (!empty($_POST[plate_number_updated])) {
+						$result = pg_query($db, "INSERT INTO car VALUES ('$plate_number', '$model', '$color')");
+						if (!$result) {
+							echo "Error: This car is already registered with another driver!<br>";
+						}
+						$query .= "UPDATE drive SET car='$plate_number' WHERE driver='$driver';";
+						$query .= "DELETE FROM  car WHERE plate_number='$row[plate_number]';";
+					} else {
+						echo "else<br>";
+						$query .= "UPDATE car SET plate_number='$plate_number', model='$model', color='$color';";
+					}
 
-
-			// $query .= "DELETE FROM car WHERE plate_number='$result[0]';";
-			// $query .= "INSERT INTO car VALUES ('$plate_number', '$model', '$color');";
-			// $query = "UPDATE drive SET car='$_POST[plate_number]' WHERE driver='$driver';";
-			// echo $pg_last_error($db).'<br>';
 					$num = pg_affected_rows(pg_query($db, $query));
-					// echo pg_last_error($db);
-					echo "update_car()<br>";
-					echo $num == null . "<br>";
 					return $num;
 				}
-				// echo "isit".(!empty($_POST['edit']) == true);
-				// echo "something";
+				
 				if (!empty($_POST['edit']) && isModified()) {
-					if (update_car()) {
+					if (update_car($db, $driver, $row)) { // affected rows > 0
 						echo "Car profile successfully updated!";
 					} else {
 						echo "Error updating car profile!";
