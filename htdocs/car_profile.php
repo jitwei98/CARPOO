@@ -47,21 +47,21 @@
 						<td><label for="plate_number"><b>Plate Number : </b></label></td>
 						<!-- 						<td><input type="text" placeholder="Enter Car Plate Number" name="plate_number"></td> -->
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row['plate_number'].'" name="plate_number_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row[plate_number].'" name="plate_number_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="model"><b>Model : </b></label></td>
 						<!-- <td><input type="text" placeholder="Enter Car Model" name="model"></td> -->
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row['model'].'" name="model_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row[model].'" name="model_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="color"><b>Color : </b></label></td>
 						<!-- <td><input type="text" placeholder="Enter Car Color" name="color"></td> -->
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row['color'].'" name="color_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row[color].'" name="color_updated"></td>';
 						?>
 					</tr>
 				</table>
@@ -84,7 +84,8 @@
 					if (!empty($_POST[plate_number_updated])) {
 						$result = pg_query($db, "INSERT INTO car VALUES ('$plate_number', '$model', '$color')");
 						if (!$result) {
-							echo "Error: This car is already registered with another driver!<br>";
+							// echo "Error: This car is already registered with another driver!<br>";
+							echo pg_last_error($db) . "<br>";
 						}
 						$query .= "UPDATE drive SET car='$plate_number' WHERE driver='$driver';";
 						$query .= "DELETE FROM  car WHERE plate_number='$row[plate_number]';";

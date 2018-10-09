@@ -142,6 +142,7 @@
 						header("Location: /carpool/user_profile");
 					} else {
 						echo "Error updating user profile!<br>";
+						echo pg_last_error($db)."<br>";
 					}
 				}
 				?>
