@@ -48,7 +48,6 @@
 		<?php
     	if (isset($_POST['driver_reg'])) {
     		$driver = $_SESSION['use'];
-<<<<<<< HEAD
     		$plate_number = $_POST[plate_number];
     		$res = pg_query($db, "INSERT INTO car VALUES ('$plate_number', '$_POST[model]', '$_POST[color]')");
     		if (!res) {
@@ -57,24 +56,14 @@
     		else {
     			$result = pg_query($db, "INSERT INTO drive VALUES ('$driver', '$plate_number')");
     			if (!$result) {
-	            	echo "Driver registration failed";
+	            	echo "Driver registration failed"."<br>";
+	            	echo pg_last_error($db)."<br>";
 	       		}
 	       		else {
 	            	header("Location: /carpool/home");
 	        	}
     		}
     	}   
-=======
-    		$res = pg_query($db, "INSERT INTO car values ('$_POST[plate_number]', '$_POST[model]', '$_POST[color]')");
-	    	$result = pg_query($db, "INSERT INTO drive VALUES ('$driver', '$_POST[plate_number]')");
-	    	if (!$result || !$res) {
-	            echo "Driver registration failed!!";
-	        } 
-	        else {
-	            header("Location: /carpool/home");
-	        }
-        }
->>>>>>> d484d9f949264a4223ca5bfb3f7b7a7bd1ecb11f
     	?>
 	</body>
 </html>
