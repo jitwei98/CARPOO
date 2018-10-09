@@ -23,7 +23,7 @@
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		  <a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>
-		  <a href="#" class="w3-bar-item w3-button">Car Profile</a>
+		  <a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Driver Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>

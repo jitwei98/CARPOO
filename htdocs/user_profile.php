@@ -44,26 +44,26 @@
 					<tr>
 						<td><label for="name"><b>Name : </b></label></td>
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row[name].'" name="name_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row['name'].'" name="name_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<!-- Email update disabled for now -->
 						<td><label for="email"><b>Email : </b></label></td>
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row[email].'" name="email_updated" readonly></td>';
+						echo '<td><input type="text" placeholder="'.$row['email'].'" name="email_updated" readonly></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="phone_number"><b>Phone number : </b></label></td>
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row[phone_number].'" name="phone_number_updated"></td>';
+						echo '<td><input type="text" placeholder="'.$row['phone_number'].'" name="phone_number_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="Gender"><b>Gender : </b></label></td>
 						<?php 
-						echo '<td><select placeholder="'.$row[gender].'" name="gender_updated">
+						echo '<td><select placeholder="'.$row['gender'].'" name="gender_updated">
 						<option value="" disabled selected>Select your option</option>
 						<option value="M">Male</option>
 						<option value="F">Female</option>
@@ -73,7 +73,7 @@
 					<tr>
 						<td><label for="dob"><b>Date of birth : </b></label></td>
 						<?php 
-						$dob_placeholder = substr($row[dob], 5)."-".substr($row[dob], 0, 4);
+						$dob_placeholder = substr($row['dob'], 5)."-".substr($row['dob'], 0, 4);
 						echo '<td><input type="date" name="dob_updated"></td>';
 						?>
 					</tr>
