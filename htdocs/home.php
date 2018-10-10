@@ -18,8 +18,8 @@
 	</head>
 	<body>
 		<div class="w3-container w3-black">
-			<a href="/carpool/home"><h1>Car Pooling</h1></a>
-  			<a href="logout.php" style="float:right;">Log Out</a>
+			<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
+			<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 		</div>
 		<div></div>
 		<?php
