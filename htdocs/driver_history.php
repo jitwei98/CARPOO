@@ -42,11 +42,11 @@
 	  	?>
 		  <a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
 		  <a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a>
-		  <a href="/carpool/driver_history" class="w3-bar-item w3-button">Car Pool History</a>
+		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
 		<div style="margin-left: 10%">
 			<div class="w3-container">
-				<h1>Open Carpool Offers</h1>
+				<h1>History</h1>
 				<table class="w3-table-all w3-hoverable">
 				<thead>
 					<tr class="w3-black">
@@ -70,7 +70,7 @@
 		   							echo '</h2>';
 	   								echo '</tr>';
 	   								echo '</thead>';
-	   								$res = pg_query($db, "SELECT * FROM bid where driver='$driver' and status='pending'");
+	   								$res = pg_query($db, "SELECT * FROM bid where driver='$driver' and status='successful'");
 	   								echo '<thead>';
 	   								echo '<tr class="w3-light-grey">';
 	   								if (pg_num_rows($res) == 0) {
