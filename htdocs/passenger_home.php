@@ -22,7 +22,7 @@
   			<a href="logout.php" style="float:right;">Log Out</a>
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		  <a href="#" class="w3-bar-item w3-button">Search for Car Pool</a>
+		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
 		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
@@ -37,7 +37,8 @@
 						date_default_timezone_set('Asia/Singapore');
 						$date_curr = date("Y/m/d");
 						$time_curr = date("h/i/sa");
-						$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+						// include_once ('includes/config.php');
+						// $db = pg_connect($conn_str);
 					    $result = pg_query($db, "SELECT * FROM offer WHERE (date_of_ride = '$date_curr') OR (date_of_ride > '$date_curr')");
 					    if(pg_num_rows($result) == 0) {
 					    	echo "No open offers currently.";
@@ -68,7 +69,6 @@
 					    	echo '</thead>';
 					    	while($row = pg_fetch_assoc($result)) {
 					    		echo '<tr>';
-					    		echo '<a href="#">';
 								echo '<td>';
 								echo $row['driver'];
 								echo '</td>';

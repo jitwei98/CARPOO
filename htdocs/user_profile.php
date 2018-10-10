@@ -25,7 +25,7 @@
 		<a href="logout.php" style="float:right;">Log Out</a>
 	</div>
 	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		<a href="#" class="w3-bar-item w3-button">Search for Car Pool</a>
+		<a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
 		<a href="/carpool/user_profile" class="w3-bar-item w3-button">Edit User Profile</a>
 		<a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 	</div>
@@ -110,6 +110,9 @@
 				function updateProfile($db, $user, $row) {
 					$name = !empty($_POST[name_updated]) ? $_POST[name_updated] : $row[name];
 					$phone_number = !empty($_POST[phone_number_updated]) ? $_POST[phone_number_updated] : $row[phone_number];
+					if (empty($_POST[password_updated]) || empty($_POST[password_updated])) {
+						$password = $row[password];
+					}
 					if (comparePassword()) {
 						$password = password_hash($_POST[password_updated], PASSWORD_DEFAULT);
 					}

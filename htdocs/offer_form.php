@@ -24,25 +24,31 @@
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		  <a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>
 		  <a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
-		  <a href="#" class="w3-bar-item w3-button">Driver Profile</a>
+		  <a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
 		<div style="margin-left: 10%">
 			<div class="w3-container">
+				<h1>Initiate Carpool Offer</h1>
 				<form class="w3-container" method="POST">
-					<h1>Initiate Carpool Offer</h1>
-				    <label for="date_of_ride"><b>Date of ride</b></label>
-				    <input type="date" placeholder="Enter Date" name="date_of_ride" required>
-				    <hr>
-				    <label for="time_of_ride"><b>Time of ride</b></label>
-				    <input type="time" placeholder="Enter Time" name="time_of_ride" required>
-				    <hr>
-				    <label for="origin"><b>Origin of trip</b></label>
-				    <input type="text" placeholder="Enter Origin" name="origin" required>
-				    <hr>
-				    <label for="destination"><b>Destination of ride</b></label>
-				    <input type="text" placeholder="Enter Destination" name="destination" required>
-				    <hr>
+					<table class="w3-table-all w3-hoverable">
+						<tr>
+						    <td><label for="date_of_ride"><b>Date of ride : </b></label></td>
+						    <td><input type="date" placeholder="Enter Date" name="date_of_ride" required></td>
+						</tr>
+					    <tr>
+						    <td><label for="time_of_ride"><b>Time of ride : </b></label></td>
+						    <td><input type="time" placeholder="Enter Time" name="time_of_ride" required></td>
+					    </tr>
+					    <tr>
+						    <td><label for="origin"><b>Origin of trip : </b></label></td>
+						    <td><input type="text" placeholder="Enter Origin" name="origin" required></td>
+					    </tr>
+					    <tr>
+						    <td><label for="destination"><b>Destination of ride : </b></label></td>
+						    <td><input type="text" placeholder="Enter Destination" name="destination" required></td>
+						</tr>
+					</table>
 		      		<input type="submit" name="offer" value="Initiate Offer">
 				</form>
 			</div>

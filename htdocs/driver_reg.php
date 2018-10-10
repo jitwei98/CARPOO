@@ -60,7 +60,7 @@
 	            	echo pg_last_error($db)."<br>";
 	       		}
 	       		else {
-	            	header("Location: /carpool/home");
+	            	header("Location: /carpool/driver_home");
 	        	}
     		}
     	}   
