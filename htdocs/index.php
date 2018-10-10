@@ -60,7 +60,7 @@
 						header("Location: /carpool/home");
 					}
 				} else {
-					echo "<p>Incorrect password!</p>";
+					echo "<p>Incorrect email/password!</p>";
 				}
 			}
 		}

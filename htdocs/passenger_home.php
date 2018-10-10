@@ -39,7 +39,7 @@
 						$time_curr = date("h/i/sa");
 						include_once ('includes/config.php');
 						$db = pg_connect($conn_str);
-					    $result = pg_query($db, "SELECT * FROM offer WHERE (date_of_ride = '$date_curr' AND time_of_ride > '$time_curr') OR (date_of_ride > '$date_curr')");
+					    $result = pg_query($db, "SELECT * FROM offer WHERE (date_of_ride = '$date_curr') OR (date_of_ride > '$date_curr')");
 					    if(pg_num_rows($result) == 0) {
 					    	echo "No open offers currently.";
 					    	echo '</tr>';
