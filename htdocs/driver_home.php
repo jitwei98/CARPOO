@@ -40,11 +40,11 @@
 		  		// echo '<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Car Pool Offers</a>';
 		  	// }
 		?>
-		<a href="/carpool/offer_form" class="w3-bar-item w3-button">Create Car Pool Offers</a>
+		<a href="/carpool/offer_form" class="w3-bar-item w3-button">Offer A Car Pool</a>
 		<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Car Pool Offered</a>
 		<a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
 		<!-- <a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a> -->
-		<a href="/carpool/driver_history" class="w3-bar-item w3-button">Car Pool History</a>
+		<a href="/carpool/driver_history" class="w3-bar-item w3-button">History</a>
 	</div>
 	<div style="margin-left: 10%">
 		<div class="w3-container">
