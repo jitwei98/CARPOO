@@ -57,7 +57,7 @@
 	    	$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$phash')");
 	    	if (!$res) {
 	            echo "Register failed!!"."<br>";
-	            // echo pg_last_error($db)."<br>";
+	            echo pg_last_error($db)."<br>";
 	        } 
 	        else {
 	        	$_SESSION['use']=$_POST['email'];
