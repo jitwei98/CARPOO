@@ -48,8 +48,8 @@
 			</form>
 		</div>
 		<?php
-		// Connect to the database. Please change the password in the following line accordingly
-    	$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+		include_once ('includes/config.php');
+		$db = pg_connect($conn_str);
     	if(isset($_POST['register'])) {
     		$pword = $_POST['password'];
     		$phash = password_hash($pword, PASSWORD_DEFAULT);

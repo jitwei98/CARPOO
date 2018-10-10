@@ -55,7 +55,8 @@
 		</div>
 		<?php
 		$driver = $_SESSION['use'];
-		$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+		include_once ('includes/config.php');
+		$db = pg_connect($conn_str);
 		$result = pg_query($db, "INSERT INTO offer VALUES ('$_POST[date_of_ride]', '$_POST[time_of_ride]', '$driver',  '$_POST[origin]', '$_POST[destination]')");
 		if (!$result) {
 			echo "Offer Invalid!";
