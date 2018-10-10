@@ -44,43 +44,33 @@
 					<tr>
 						<td><label for="name"><b>Name : </b></label></td>
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row['name'].'" name="name_updated"></td>';
+						echo '<td><input type="text" value="'.$row['name'].'" name="name_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<!-- Email update disabled for now -->
 						<td><label for="email"><b>Email : </b></label></td>
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row['email'].'" name="email_updated" readonly></td>';
+						echo '<td>'.$row['email'].'</td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="phone_number"><b>Phone number : </b></label></td>
 						<?php 
-						echo '<td><input type="text" placeholder="'.$row['phone_number'].'" name="phone_number_updated"></td>';
+						echo '<td><input type="text" value="'.$row['phone_number'].'" name="phone_number_updated"></td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="Gender"><b>Gender : </b></label></td>
 						<?php 
-						echo '<td><select placeholder="'.$row['gender'].'" name="gender_updated">
-						<option value="" disabled selected>Select your option</option>
-						<option value="M">Male</option>
-						<option value="F">Female</option>
-						</select></td>';
+						echo '<td>'.$row['gender'].'</td>';
 						?>
 					</tr>
 					<tr>
 						<td><label for="dob"><b>Date of birth : </b></label></td>
 						<?php 
 						$dob_placeholder = substr($row['dob'], 5)."-".substr($row['dob'], 0, 4);
-						echo '<td><input type="date" name="dob_updated"></td>';
-						?>
-					</tr>
-					<tr>
-						<td><label for="password"><b>Password : </b></label></td>
-						<?php 
-						echo '<td><input type="password" placeholder="Enter Password" name="password" required></td>';
+						echo '<td>'.$dob_placeholder.'</td>';
 						?>
 					</tr>
 					<tr>
@@ -112,34 +102,34 @@
 					return $_POST[password_updated] == $_POST[password_repeated];
 				}
 
-				function validatePassword($db, $user, $row) {
-					$hash = $row[password];
-					return password_verify($_POST[password], $hash);
-				}
+				// function validatePassword($db, $user, $row) {
+				// 	$hash = $row[password];
+				// 	return password_verify($_POST[password], $hash);
+				// }
 
 				function updateProfile($db, $user, $row) {
 					$name = !empty($_POST[name_updated]) ? $_POST[name_updated] : $row[name];
 					$phone_number = !empty($_POST[phone_number_updated]) ? $_POST[phone_number_updated] : $row[phone_number];
-					$gender = !empty($_POST[gender_updated]) ? $_POST[gender_updated] : $row[gender];
-					$dob = !empty($_POST[dob_updated]) ? $_POST[dob_updated] : $row[dob];
-					$password = $row[password];
 					if (comparePassword()) {
 						$password = password_hash($_POST[password_updated], PASSWORD_DEFAULT);
 					}
 					$query = "";
 					// echo $plate_number . "<br>" . $model . "<br>" . $color . "<br>";
-					$query .= "UPDATE app_user SET name='$name', phone_number='$phone_number', gender='$gender', dob='$dob', password='$password';";
+					$query .= "UPDATE app_user SET name='$name', phone_number='$phone_number', password='$password';";
 					return pg_query($db, $query);
 				}
 
 
 				
 				if (!empty($_POST['edit']) && isModified()) {
-					if (!validatePassword($db, $user, $row)) {
-						echo "Incorrect password!<br>";
-					} else if (updateProfile($db, $user, $row)) { // affected rows > 0
-						// echo "User profile successfully updated!";
-						header("Location: /carpool/user_profile");
+					// if (!validatePassword($db, $user, $row)) {
+					// 	echo "Incorrect password!<br>";
+					 if (updateProfile($db, $user, $row)) { // affected rows > 0
+					 	echo "<script type='text/javascript'>
+					 	alert('User profile successfully updated!');
+					 	window.location = '/carpool/user_profile';
+					 	</script>";
+						// header("Location: /carpool/user_profile");
 					} else {
 						echo "Error updating user profile!<br>";
 						echo pg_last_error($db)."<br>";
