@@ -32,7 +32,7 @@
 	</div>
 	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%">
 		<?php 
-		$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and (date_of_ride = '$date_curr' OR date_of_ride > '$date_curr')");
+		$result = pg_query($db, "SELECT * FROM offer o WHERE o.driver = '$driver' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND NOT EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND (b.status = 'successful' OR b.status = 'unsuccessful'))");
 			// if (pg_num_rows($result) == 0) {
 				// echo '<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>';
 			// }
@@ -41,7 +41,7 @@
 		  	// }
 		?>
 		<a href="/carpool/offer_form" class="w3-bar-item w3-button">Offer A Car Pool</a>
-		<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Car Pool Offered</a>
+		<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Open Offers</a>
 		<a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
 		<!-- <a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a> -->
 		<a href="/carpool/driver_history" class="w3-bar-item w3-button">History</a>
@@ -72,7 +72,7 @@
 								echo '</h2>';
 								echo '</tr>';
 								echo '</thead>';
-								$res = pg_query($db, "SELECT * FROM bid where driver='$driver' and status='pending'");
+								$res = pg_query($db, "SELECT * FROM bid WHERE driver='$driver' AND status='pending'");
 								echo '<thead>';
 								echo '<tr class="w3-light-grey">';
 								if (pg_num_rows($res) == 0) {

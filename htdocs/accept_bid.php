@@ -30,17 +30,18 @@
   			<a href="logout.php" style="float:right;">Log Out</a>
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
-		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
-		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
+			<a href="/carpool/offer_form" class="w3-bar-item w3-button">Offer A Car Pool</a>
+			<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Open Offers</a>
+			<a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
+			<a href="/carpool/driver_history" class="w3-bar-item w3-button">History</a>
 		</div>
 		<div style="margin-left: 10%">
 			<div class="w3-container">
-				<h1>Accept Carpool Offer?</h1>
+				<h1>Accept Bid?</h1>
 				<form class="w3-container" method="POST">
 					<!-- <label for="price"><b>Bid Price : $</b></label> -->
 					<!-- <input type="text" name="price" placeholder="Enter Bid Value"> -->
-		      		<input type="submit" name="accept" value="Accept Bid">
+		      		<input type="submit" name="accept" value="Accept">
 		      		<button onclick="goBack()">Go Back</button>
 				</form>
 
@@ -61,7 +62,7 @@
 						echo pg_last_error($db)."<br>";
 					}
 					else {
-						header("Location: /carpool/passenger_home");
+						header("Location: /carpool/driver_home");
 					}
 				}
 				?>

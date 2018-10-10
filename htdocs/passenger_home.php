@@ -43,7 +43,8 @@
 					   	$user = $_SESSION['use'];
 						include_once ('includes/config.php');
 						$db = pg_connect($conn_str);
-					    $result = pg_query($db, "SELECT * FROM offer WHERE driver <> '$user' AND date_of_ride >= '$date_curr'");
+					    // $result = pg_query($db, "SELECT * FROM offer WHERE driver <> '$user' AND date_of_ride >= '$date_curr'");
+					    $result = pg_query($db, "SELECT * FROM offer o WHERE o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND NOT EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND (b.status = 'successful' OR b.passenger = '$user'))");
 					    if(pg_num_rows($result) == 0) {
 					    	echo "No open offers currently.";
 					    	echo '</tr>';
