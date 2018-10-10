@@ -37,7 +37,8 @@
 			</form>
 		</div>
 		<?php
-		$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+		include_once ('includes/config.php');
+		$db = pg_connect($conn_str);
 		if (isset($_POST['login'])) {
 
 			$email = $_POST['email'];

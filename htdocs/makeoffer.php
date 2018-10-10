@@ -24,7 +24,8 @@
 		<div class="w3-container">
 		<?php
 			$email = $_SESSION['use'];
-			$db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+			include_once ('includes/config.php');
+			$db = pg_connect($conn_str);
 			$result = pg_query($db, "SELECT * FROM drive where driver = '$email'");
 		    $row = pg_fetch_assoc($result);
 		    if (pg_num_rows($result) == 0) {
