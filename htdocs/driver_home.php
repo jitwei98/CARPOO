@@ -73,12 +73,11 @@
 	   								$res = pg_query($db, "SELECT * FROM bid where driver='$driver' and status='pending'");
 	   								echo '<thead>';
 	   								echo '<tr class="w3-light-grey">';
-	   								if(pg_num_rows($res) == 0) {
+	   								if (pg_num_rows($res) == 0) {
 	   									echo "No current bids";
 		   								echo '</tr>';
-		   								echo '</thead';
-	   								}
-	   								else {
+		   								echo '</thead>';
+	   								} else {
    										echo '<td>';
    										echo "Passenger";
    										echo '</td>';
@@ -87,12 +86,12 @@
    										echo '</td>';
    										echo '</tr>';
    										echo '</thead>';
-	   									while($row = pg_fetch_assoc($res)) {
+	   									while ($row = pg_fetch_assoc($res)) {
 	   										echo '<tr>';
-	   										echo '<td><a href="#">';
+	   										echo '<td><a href="/carpool/accept_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'&passenger='.$row['passenger'].'&price='.$row['price'].'">';
 	   										echo $row['passenger'];
 	   										echo '</a></td>';
-	   										echo '<td><a href="#">';
+	   										echo '<td><a href="/carpool/accept_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'&passenger='.$row['passenger'].'&price='.$row['price'].'">';
 	   										echo $row['price'];
 	   										echo '</a></td>';
 	   										echo '</tr>';
