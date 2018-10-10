@@ -40,9 +40,10 @@
 						date_default_timezone_set('Asia/Singapore');
 						$date_curr = date("Y/m/d");
 						$time_curr = date("h/i/sa");
+					   	$user = $_SESSION['use'];
 						include_once ('includes/config.php');
 						$db = pg_connect($conn_str);
-					    $result = pg_query($db, "SELECT * FROM offer WHERE (date_of_ride = '$date_curr') OR (date_of_ride > '$date_curr')");
+					    $result = pg_query($db, "SELECT * FROM offer WHERE driver <> '$user' AND ((date_of_ride = '$date_curr') OR (date_of_ride > '$date_curr'))");
 					    if(pg_num_rows($result) == 0) {
 					    	echo "No open offers currently.";
 					    	echo '</tr>';
