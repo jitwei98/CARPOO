@@ -105,7 +105,8 @@
 						// echo "Car profile successfully updated!";
 						header("Location: /carpool/car_profile");
 					} else {
-						echo "Error updating car profile!";
+						echo "Error updating car profile!<br>";
+						echo pg_last_error($db)."<br>";
 					}
 				}
 				?>

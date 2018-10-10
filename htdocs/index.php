@@ -35,35 +35,35 @@
 	        		<input type="checkbox" checked="checked" name="remember"> Remember me
 	      		</label>
 			</form>
-		</div>
-		<?php
-		include_once ('includes/config.php');
-		$db = pg_connect($conn_str);
-		if (isset($_POST['login'])) {
+			<?php
+				include_once ('includes/config.php');
+				$db = pg_connect($conn_str);
+				if (isset($_POST['login'])) {
 
-			$email = $_POST['email'];
-			$pword = $_POST['password'];
-			$result = pg_query($db, "SELECT * FROM app_user WHERE email = '$_POST[email]'");
-			$row = pg_fetch_assoc($result);
+					$email = $_POST['email'];
+					$pword = $_POST['password'];
+					$result = pg_query($db, "SELECT * FROM app_user WHERE email = '$_POST[email]'");
+					$row = pg_fetch_assoc($result);
 
-			if(!$result) {
-				echo "Login Failed!";
-			}
-			else {
-				$phash = $row[password];
-
-				if (password_verify($pword, $phash)) {
-					$_SESSION['use']=$email;
-					if ($_POST['email'] == "admin") {
-						header("Location: /carpool/admin");	
-					} else {
-						header("Location: /carpool/home");
+					if(!$result) {
+						echo "Login Failed!";
 					}
-				} else {
-					echo "<p>Incorrect email/password!</p>";
+					else {
+						$phash = $row[password];
+
+						if (password_verify($pword, $phash)) {
+							$_SESSION['use']=$email;
+							if ($_POST['email'] == "admin") {
+								header("Location: /carpool/admin");	
+							} else {
+								header("Location: /carpool/home");
+							}
+						} else {
+							echo "<p>Incorrect email/password!</p>";
+						}
+					}
 				}
-			}
-		}
-		?>
+			?>
+		</div>
 	</body>
 </html>

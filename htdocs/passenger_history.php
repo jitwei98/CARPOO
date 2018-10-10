@@ -79,25 +79,18 @@
 					    	echo '</thead>';
 					    	while($row = pg_fetch_assoc($result)) {
 					    		echo '<tr>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['driver'];
 								echo '</a></td>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['origin'];
 								echo '</a></td>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['destination'];
 								echo '</a></td>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['date_of_ride'];
 								echo '</a></td>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['time_of_ride'];
 								echo '</a></td>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['price'];
 								echo '</a></td>';
-								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['status'];
 								echo '</a></td>';
 								echo '</tr>';

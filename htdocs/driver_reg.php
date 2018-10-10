@@ -45,26 +45,26 @@
 			    <hr>
 	      		<input type="submit" name="driver_reg" value="Register as Driver">
 			</form>
+			<?php
+				if (isset($_POST['driver_reg'])) {
+					$driver = $_SESSION['use'];
+					$plate_number = $_POST[plate_number];
+					$res = pg_query($db, "INSERT INTO car VALUES ('$plate_number', '$_POST[model]', '$_POST[color]')");
+					if (!res) {
+						echo "Invalid car details";
+					}
+					else {
+						$result = pg_query($db, "INSERT INTO drive VALUES ('$driver', '$plate_number')");
+						if (!$result) {
+							echo "Driver registration failed"."<br>";
+							echo pg_last_error($db)."<br>";
+						}
+						else {
+							header("Location: /carpool/driver_home");
+						}
+					}
+				}   
+			?>
 		</div>
-		<?php
-    	if (isset($_POST['driver_reg'])) {
-    		$driver = $_SESSION['use'];
-    		$plate_number = $_POST[plate_number];
-    		$res = pg_query($db, "INSERT INTO car VALUES ('$plate_number', '$_POST[model]', '$_POST[color]')");
-    		if (!res) {
-    			echo "Invalid car details";
-    		}
-    		else {
-    			$result = pg_query($db, "INSERT INTO drive VALUES ('$driver', '$plate_number')");
-    			if (!$result) {
-	            	echo "Driver registration failed"."<br>";
-	            	echo pg_last_error($db)."<br>";
-	       		}
-	       		else {
-	            	header("Location: /carpool/driver_home");
-	        	}
-    		}
-    	}   
-    	?>
 	</body>
 </html>

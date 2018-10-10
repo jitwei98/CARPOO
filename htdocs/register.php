@@ -46,24 +46,24 @@
 			    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 			    <input type="submit" name="register" value="Register"/>
 			</form>
-		</div>
-		<?php
-		include_once ('includes/config.php');
-		$db = pg_connect($conn_str);
-    	if(isset($_POST['register'])) {
-    		$pword = $_POST['password'];
-    		$phash = password_hash($pword, PASSWORD_DEFAULT);
+			<?php
+			include_once ('includes/config.php');
+			$db = pg_connect($conn_str);
+			if(isset($_POST['register'])) {
+				$pword = $_POST['password'];
+				$phash = password_hash($pword, PASSWORD_DEFAULT);
 
-	    	$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$phash')");
-	    	if (!$res) {
-	            echo "Register failed!!"."<br>";
-	            echo pg_last_error($db)."<br>";
-	        } 
-	        else {
-	        	$_SESSION['use']=$_POST['email'];
-	            header("Location: /carpool/home");
-	        }
-    	}
-		?>
+				$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$phash')");
+				if (!$res) {
+					echo "Register failed!!"."<br>";
+					echo pg_last_error($db)."<br>";
+				} 
+				else {
+					$_SESSION['use']=$_POST['email'];
+					header("Location: /carpool/home");
+				}
+			}
+			?>
+		</div>
 	</body>
 </html>
