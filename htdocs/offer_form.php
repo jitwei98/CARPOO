@@ -54,16 +54,20 @@
 			</div>
 		</div>
 		<?php
-		$driver = $_SESSION['use'];
-		include_once ('includes/config.php');
-		$db = pg_connect($conn_str);
-		$result = pg_query($db, "INSERT INTO offer VALUES ('$_POST[date_of_ride]', '$_POST[time_of_ride]', '$driver',  '$_POST[origin]', '$_POST[destination]')");
-		if (!$result) {
-			echo "Offer Invalid!";
-		}
-		else {
-			header("Location: /carpool/driver_home");
-		}
+			$driver = $_SESSION['use'];
+			include_once ('includes/config.php');
+			$db = pg_connect($conn_str);
+
+			if(isset($_POST['offer'])) {
+				$result = pg_query($db, "INSERT INTO offer VALUES ('$_POST[date_of_ride]', '$_POST[time_of_ride]', '$driver',  '$_POST[origin]', '$_POST[destination]')");
+				if (!$result) {
+					echo "Offer Invalid!<br>";
+					echo pg_last_error()."<br>";
+				}
+				else {
+					header("Location: /carpool/driver_home");
+				}
+			}
 		?>
 	</body>
 </html>
