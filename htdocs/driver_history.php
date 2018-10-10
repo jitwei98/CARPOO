@@ -32,7 +32,7 @@
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%">
 		<?php 
-			$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and (date_of_ride = '$date_curr' OR date_of_ride > '$date_curr')");
+			$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and date_of_ride < '$date_curr'");
 			if (pg_num_rows($result) == 0) {
 				echo '<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>';
 			}
@@ -53,7 +53,7 @@
 						<h3>
 							<?php
 		   						if (pg_num_rows($result) == 0) {
-		   							echo "No open offer currently";
+		   							echo "History is empty.";
 		   							echo '</h3>';
 		   							echo '</tr>';
 		   							echo '</thead>';
@@ -70,7 +70,7 @@
 		   							echo '</h2>';
 	   								echo '</tr>';
 	   								echo '</thead>';
-	   								$res = pg_query($db, "SELECT * FROM bid where driver='$driver' and status='successful'");
+	   								$res = pg_query($db, "SELECT * FROM offer o, bid b where o.driver='$driver' AND o.driver = b.driver AND o.date_of_ride < '$date_curr' ORDER BY o.date_of_ride;");
 	   								echo '<thead>';
 	   								echo '<tr class="w3-light-grey">';
 	   								if (pg_num_rows($res) == 0) {
