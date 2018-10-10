@@ -4,8 +4,12 @@
   {
   	header("Location: /carpool");  
   }
-  $db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
-  $user = $_SESSION['use'];
+ 	include_once ('includes/config.php');
+	$db = pg_connect($conn_str);
+	$driver = $_SESSION['use'];
+	date_default_timezone_set('Asia/Singapore');
+	$date_curr = date("Y/m/d");
+	$time_curr = date("h/i/sa");
   ?>
 
   <!DOCTYPE html>
@@ -25,7 +29,15 @@
 		<a href="logout.php" style="float:right;">Log Out</a>
 	</div>
 	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>
+		<?php 
+			$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and (date_of_ride = '$date_curr' OR date_of_ride > '$date_curr')");
+			if (pg_num_rows($result) == 0) {
+				echo '<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>';
+			}
+		  	else {
+		  		echo '<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Car Pool Offers</a>';
+		  	}
+	  	?>
 		<a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
 		<a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a>
 		<a href="#" class="w3-bar-item w3-button">Car Pool History</a>

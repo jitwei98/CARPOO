@@ -14,6 +14,9 @@
 			a {
 				text-decoration: none;
 			}
+			td a { 
+			   display: block; 
+			}
 		</style>
 	</head>
 	<body>
@@ -69,22 +72,21 @@
 					    	echo '</thead>';
 					    	while($row = pg_fetch_assoc($result)) {
 					    		echo '<tr>';
-								echo '<td>';
+								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['driver'];
-								echo '</td>';
-								echo '<td>';
+								echo '</a></td>';
+								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['origin'];
-								echo '</td>';
-								echo '<td>';
+								echo '</a></td>';
+								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['destination'];
-								echo '</td>';
-								echo '<td>';
+								echo '</a></td>';
+								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['date_of_ride'];
-								echo '</td>';
-								echo '<td>';
+								echo '</a></td>';
+								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
 								echo $row['time_of_ride'];
-								echo '</td>';
-								echo '</a>';
+								echo '</a></td>';
 								echo '</tr>';
 					    	}
 					    }

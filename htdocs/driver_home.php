@@ -4,6 +4,12 @@
    {
        header("Location: /carpool");  
    }
+   include_once ('includes/config.php');
+	$db = pg_connect($conn_str);
+	$driver = $_SESSION['use'];
+	date_default_timezone_set('Asia/Singapore');
+	$date_curr = date("Y/m/d");
+	$time_curr = date("h/i/sa");
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +20,9 @@
 			a {
 				text-decoration: none;
 			}
+			td a { 
+			   display: block; 
+			}
 		</style>
 	</head>
 	<body>
@@ -21,8 +30,16 @@
 			<a href="/carpool/home"><h1>Car Pooling</h1></a>
   			<a href="logout.php" style="float:right;">Log Out</a>
 		</div>
-		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		  <a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>
+		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%">
+		<?php 
+			$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and (date_of_ride = '$date_curr' OR date_of_ride > '$date_curr')");
+			if (pg_num_rows($result) == 0) {
+				echo '<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>';
+			}
+		  	else {
+		  		echo '<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Car Pool Offers</a>';
+		  	}
+	  	?>
 		  <a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
 		  <a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
@@ -35,13 +52,6 @@
 					<tr class="w3-black">
 						<h3>
 							<?php
-								$driver = $_SESSION['use'];
-								date_default_timezone_set('Asia/Singapore');
-								$date_curr = date("Y/m/d");
-								$time_curr = date("h/i/sa");
-								include_once ('includes/config.php');
-								$db = pg_connect($conn_str);
-							    $result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and date_of_ride = '$date_curr' and time_of_ride > '$time_curr'");
 		   						if (pg_num_rows($result) == 0) {
 		   							echo "No open offer currently";
 		   							echo '</h3>';
@@ -51,8 +61,11 @@
 		   						else {
 	   								$row = pg_fetch_assoc($result);
 	   								echo $row['date_of_ride'];
+	   								echo ", ";
 	   								echo $row['time_of_ride'];
+	   								echo ", ";
 	   								echo $row['origin'];
+	   								echo " to ";
 	   								echo $row['destination'];
 		   							echo '</h2>';
 	   								echo '</tr>';
@@ -66,15 +79,22 @@
 		   								echo '</thead';
 	   								}
 	   								else {
+   										echo '<td>';
+   										echo "Passenger";
+   										echo '</td>';
+   										echo '<td>';
+   										echo "Bid Price";
+   										echo '</td>';
+   										echo '</tr>';
+   										echo '</thead>';
 	   									while($row = pg_fetch_assoc($res)) {
-	   										//fill in code for printing bid details
 	   										echo '<tr>';
-	   										echo '<td>';
+	   										echo '<td><a href="#">';
 	   										echo $row['passenger'];
-	   										echo '</td>';
-	   										echo '<td>';
+	   										echo '</a></td>';
+	   										echo '<td><a href="#">';
 	   										echo $row['price'];
-	   										echo '</td>';
+	   										echo '</a></td>';
 	   										echo '</tr>';
 	   									}
 	   									echo '</table>';
