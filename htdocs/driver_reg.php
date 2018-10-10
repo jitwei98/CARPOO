@@ -5,7 +5,8 @@
        header("Location: /carpool");  
    }
 // If user is already a driver redirect to home page
-   $db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+   include_once ('includes/config.php');
+   $db = pg_connect($conn_str);
    $user = $_SESSION['use'];
    $isRegisteredDriver = pg_fetch_row(pg_query($db, "SELECT * FROM drive WHERE driver = '$user'"));
 // echo $isRegisteredDriver[0];

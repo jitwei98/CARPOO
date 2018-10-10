@@ -4,7 +4,8 @@
   {
   	header("Location: /carpool");  
   }
-  $db = pg_connect("host=localhost port=5432 dbname=carpool user=postgres password=test");
+  include_once ('includes/config.php');
+  $db = pg_connect($conn_str);
   $user = $_SESSION['use'];
   ?>
 
