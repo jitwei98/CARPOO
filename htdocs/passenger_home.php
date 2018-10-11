@@ -27,7 +27,7 @@
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
 		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
-		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
+		  <a href="/carpool/passenger_history" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
 		<div style="margin-left: 10%">
 			<div class="w3-container">
@@ -51,7 +51,7 @@
 					    }
 					    else {
 					    	echo '<h3>';
-					    	echo pg_num_rows($result);
+					    	echo pg_num_rows($result); // Use this or COUNT again?
 					    	echo " offer(s) open";
 					    	echo '</h3>';
 					    	echo '<tr>';
