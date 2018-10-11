@@ -91,8 +91,9 @@
 							// echo "Error: This car is already registered with another driver!<br>";
 							echo pg_last_error($db) . "<br>";
 						}
-						$query .= "UPDATE drive SET car='$plate_number' WHERE driver='$driver';";
-						$query .= "DELETE FROM  car WHERE plate_number='$row[plate_number]';";
+						$query .= "DELETE FROM drive WHERE drive = '$driver';";
+						$query .= "INSERT INTO drive VALUES ('$driver', '$plate_number');";
+						// $query .= "DELETE FROM  car WHERE plate_number='$row[plate_number]';";
 					} else {
 						$query .= "UPDATE car SET plate_number='$plate_number', model='$model', color='$color';";
 					}
