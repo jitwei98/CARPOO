@@ -41,7 +41,7 @@ CREATE TABLE bid (
 	passenger VARCHAR(32),
 	price DECIMAL(19, 4) NOT NULL,
 	status VARCHAR(16) NOT NULL 
-	CONSTRAINT status CHECK (status = 'pending' OR status = 'successful' OR status = 'unsucessful'),
+	CONSTRAINT status CHECK (status = 'pending' OR status = 'successful' OR status = 'unsuccessful'),
 	PRIMARY KEY (date_of_ride, time_of_ride, driver, passenger),
 	FOREIGN KEY (date_of_ride, time_of_ride, driver) 
 	REFERENCES offer(date_of_ride, time_of_ride, driver)
