@@ -88,6 +88,9 @@
 					</tr>
 				</table>
 				<input type="submit" name="edit" value="Save" style="float:right;">
+				<a href="delete_user.php" 
+					onclick="return confirm('Are you sure you want to delete your account?')" style="float:left" 
+					class="w3-button w3-red">Delete Account</a>
 			</form>
 
 			<h1>
@@ -123,8 +126,6 @@
 					return pg_query($db, $query);
 				}
 
-
-				
 				if (!empty($_POST['edit']) && isModified()) {
 					// if (!validatePassword($db, $user, $row)) {
 					// 	echo "Incorrect password!<br>";
