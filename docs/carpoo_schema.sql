@@ -31,7 +31,7 @@ CREATE TABLE offer(
 	destination VARCHAR(64) NOT NULL,
 	PRIMARY KEY (date_of_ride, time_of_ride, driver),
 	FOREIGN KEY (driver) REFERENCES app_user(email) ON UPDATE CASCADE ON DELETE CASCADE,
-	CHECK(origin <> destination);
+	CHECK(origin <> destination)
 );
 
 CREATE TABLE bid (
