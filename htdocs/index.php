@@ -51,7 +51,8 @@
 					else {
 						$phash = $row[password];
 
-						if (password_verify($pword, $phash)) {
+						// if (password_verify($pword, $phash)) {
+						if ($pword == $phash) {
 							$_SESSION['use']=$email;
 							if ($_POST['email'] == "admin") {
 								header("Location: /carpool/admin");	

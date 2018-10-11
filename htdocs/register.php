@@ -51,7 +51,8 @@
 			$db = pg_connect($conn_str);
 			if(isset($_POST['register'])) {
 				$pword = $_POST['password'];
-				$phash = password_hash($pword, PASSWORD_DEFAULT);
+				// $phash = password_hash($pword, PASSWORD_DEFAULT);
+				$phash = $pword;
 
 				$res = pg_query($db, "INSERT INTO app_user VALUES ('$_POST[phone_number]', '$_POST[email]', '$_POST[name]', '$_POST[gender]', '$_POST[dob]', '$phash')");
 				if (!$res) {
