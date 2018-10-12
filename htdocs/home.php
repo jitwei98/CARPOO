@@ -7,33 +7,20 @@
 ?>
 <!DOCTYPE html>
 <html>
-
-<!-- header -->
-<?php include_once('includes/header.php'); ?>
-
-<!-- navigation -->
-<body>
-<div class="container-fluid">
-	<div class="navbar navbar-default navbar-static-top" role="navigation">
-		<div class="navbar-header">
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon icon-bar"></span>
-				<span class="icon icon-bar"></span>
-				<span class="icon icon-bar"></span>
-			</button>
-			<a href="#" class="navbar-brand"> CARPOO</a>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+			a {
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
+			<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
+			<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/carpool/home" class="active">HOME</a></li>
-				<li><a href="about.html">ABOUT US</a></li>
-				<li><a href="portfolio.html">PORTFOLIO</a></li>
-				<li><a href="contact.html">CONTACT</a></li>
-				<li><a href="logout.php">LOGOUT</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
 		<div></div>
 		<?php
 			$email = $_SESSION['use'];
