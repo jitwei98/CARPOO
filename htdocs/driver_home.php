@@ -26,13 +26,13 @@
   </style>
 </head>
 <body>
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
 		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
 		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 	</div>
 	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%">
 		<?php 
-		$result = pg_query($db, "SELECT * FROM offer o WHERE o.driver = '$driver' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND NOT EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND (b.status = 'successful' OR b.status = 'unsuccessful'))");
+		$result = pg_query($db, "SELECT * FROM offer o WHERE o.driver = '$driver' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND NOT EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND (b.status = 'successful' OR b.status = 'unsuccessful')) ORDER BY o.date_of_ride ASC , o.time_of_ride ASC");
 			// if (pg_num_rows($result) == 0) {
 				// echo '<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>';
 			// }
@@ -49,56 +49,62 @@
 	<div style="margin-left: 10%">
 		<div class="w3-container">
 			<h1>Open Carpool Offers</h1>
-			<table class="w3-table-all w3-hoverable">
-				<thead>
-					<tr class="w3-black">
-						<h3>
+			
 							<?php
 							if (pg_num_rows($result) == 0) {
+								echo '<table class="w3-table-all w3-hoverable">';
+								echo '<thead>';
+								echo '<tr class="w3-black">';
+								echo '<h3>';
 								echo "No open offer currently";
 								echo '</h3>';
 								echo '</tr>';
 								echo '</thead>';
 							}
 							else {
-								$row = pg_fetch_assoc($result);
-								echo $row['date_of_ride'];
-								echo ", ";
-								echo $row['time_of_ride'];
-								echo ", ";
-								echo $row['origin'];
-								echo " to ";
-								echo $row['destination'];
-								echo '</h2>';
-								echo '</tr>';
-								echo '</thead>';
-								$res = pg_query($db, "SELECT * FROM bid WHERE driver='$driver' AND status='pending' ORDER BY price DESC");
-								echo '<thead>';
-								echo '<tr class="w3-light-grey">';
-								if (pg_num_rows($res) == 0) {
-									echo "No current bids";
+								while($row = pg_fetch_assoc($result)){
+									echo '<table class="w3-table-all w3-hoverable">';
+									echo '<thead>';
+									echo '<tr class="w3-black">';
+									echo '<h3>';
+									echo $row['date_of_ride'];
+									echo ", ";
+									echo $row['time_of_ride'];
+									echo ", ";
+									echo $row['origin'];
+									echo " to ";
+									echo $row['destination'];
+									echo '</h2>';
 									echo '</tr>';
 									echo '</thead>';
-								} else {
-									echo '<td>';
-									echo "Passenger";
-									echo '</td>';
-									echo '<td>';
-									echo "Bid Price";
-									echo '</td>';
-									echo '</tr>';
-									echo '</thead>';
-									while ($row = pg_fetch_assoc($res)) {
-										echo '<tr>';
-										echo '<td><a href="/carpool/accept_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'&passenger='.$row['passenger'].'&price='.$row['price'].'">';
-										echo $row['passenger'];
-										echo '</a></td>';
-										echo '<td><a href="/carpool/accept_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'&passenger='.$row['passenger'].'&price='.$row['price'].'">';
-										echo $row['price'];
-										echo '</a></td>';
+									$res = pg_query($db, "SELECT * FROM bid WHERE driver='$driver' AND time_of_ride='$row[time_of_ride]' AND date_of_ride='$row[date_of_ride]' AND status='pending' ORDER BY date_of_ride ASC,price DESC");
+									echo '<thead>';
+									echo '<tr class="w3-light-grey">';
+									if (pg_num_rows($res) == 0) {
+										echo "No current bids";
 										echo '</tr>';
+										echo '</thead>';
+									} else {
+										echo '<td>';
+										echo "Passenger";
+										echo '</td>';
+										echo '<td style="margin-right:auto;">';
+										echo "Bid Price";
+										echo '</td>';
+										echo '</tr>';
+										echo '</thead>';
+										while ($row = pg_fetch_assoc($res)) {
+											echo '<tr>';
+											echo '<td><a href="/carpool/accept_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'&passenger='.$row['passenger'].'&price='.$row['price'].'">';
+											echo $row['passenger'];
+											echo '</a></td>';
+											echo '<td style="width:20%;><a href="/carpool/accept_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'&passenger='.$row['passenger'].'&price='.$row['price'].'">';
+											echo $row['price'];
+											echo '</a></td>';
+											echo '</tr>';
+										}
+										echo '</table>';
 									}
-									echo '</table>';
 								}
 							}
 							?>

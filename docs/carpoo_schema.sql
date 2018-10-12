@@ -12,7 +12,8 @@ CREATE TABLE app_user (
 	name VARCHAR(32) NOT NULL,
 	gender CHAR(1) NOT NULL CONSTRAINT gender CHECK (gender = 'M' OR gender = 'F'),
 	dob DATE NOT NULL,
-	password VARCHAR(64) NOT NULL
+	password VARCHAR(64) NOT NULL,
+	isadmin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE drive (
