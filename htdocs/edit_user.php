@@ -1,7 +1,7 @@
 <?php   session_start();  ?>
 <?php
 	// If session is not set or user is not admin then redirect to Login Page
-if(!isset($_SESSION['use']) || $_SESSION['use'] != "admin") 
+if(!isset($_SESSION['use'])) 
 {
 	header("Location: /carpool");  
 }
