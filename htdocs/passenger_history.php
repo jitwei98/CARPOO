@@ -47,6 +47,8 @@
 						echo 'History is empty. </tr>';
 					} else {
 						echo '<h3>', pg_num_rows($result), " previous bid(s) </h3>";
+						echo '<div><form method="POST">';
+						echo '<button name="delete" type="submit" value="Delete">Delete</button>';
 						echo '<thead>
 								<th><input type="checkbox" id="chkParent" /></th>
 								<th>Driver</th>
@@ -57,9 +59,10 @@
 								<th>Price Offered</th>
 								<th>Status</th>
 								</thead>';
+						$counter = 0;
 						while($row = pg_fetch_assoc($result)) {
 							echo '<tr>';
-							echo '<td><input name="selected_row[]" value="'.$row['id'].'" type="checkbox" /></td>';
+							echo '<td><input name="selected_row[]" value="'.implode("|", array($row['driver'], $row['passenger'], $row['date_of_ride'], $row['time_of_ride'])).'" type="checkbox" /></td>';
 							echo '<td>', $row['driver'], '</td>';
 							echo '<td>', $row['origin'], '</td>';
 							echo '<td>', $row['destination'], '</td>';
@@ -68,7 +71,22 @@
 							echo '<td>', $row['price'], '</td>';
 							echo '<td>', $row['status'], '</td>';
 							echo '</tr>';
+							$counter++;
 						}
+						echo '</form>';
+						if(isset($_POST['delete']) AND isset($_POST['selected_row'])) {
+							$delete_rows = $_POST['selected_row'];
+							for($i = 0; $i < count($delete_rows); $i++) {
+								$curr_row = explode("|", $delete_rows[$i]);
+								error_log($curr_row[3]);
+								pg_query($db, "DELETE FROM bid WHERE driver = '$curr_row[0]' AND passenger = '$curr_row[1]' AND date_of_ride = '$curr_row[2]' AND time_of_ride = '$curr_row[3]'");
+								header("Refresh:0");
+							}
+							
+						}
+						echo '</div>';
+
+						
 					}
 					?>
 				</table>
