@@ -6,16 +6,30 @@
    }
 ?>
 <!DOCTYPE html>
- <html>
-<!-- header -->
-<?php include_once('includes/header.php'); ?>
-
-<body>
-
-<!-- navigation -->
-<?php include_once('includes/navbar_passenger.php'); ?>
-
-		<div style="margin-left: 10%; margin-right:10%; padding-top: 50px" class="w3-container">
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+			a {
+				text-decoration: none;
+			}
+			td a { 
+			   display: block; 
+			}
+		</style>
+	</head>
+	<body>
+		<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
+			<a href="/carpool/home"><h1>Car Pooling</h1></a>
+  			<a href="logout.php" style="float:right;">Log Out</a>
+		</div>
+		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
+		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
+		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
+		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
+		</div>
+		<div style="margin-left: 10%" class="w3-container">
 				<h1>History</h1>
 				<table class="w3-table-all w3-hoverable">
 					<tr class="w3-light gray">
@@ -33,6 +47,8 @@
 						echo 'History is empty. </tr>';
 					} else {
 						echo '<h3>', pg_num_rows($result), " previous bid(s) </h3>";
+						echo '<div><form method="POST">';
+						echo '<button name="delete" type="submit" value="Delete">Delete</button>';
 						echo '<thead>
 								<th><input type="checkbox" id="chkParent" /></th>
 								<th>Driver</th>
@@ -43,9 +59,10 @@
 								<th>Price Offered</th>
 								<th>Status</th>
 								</thead>';
+						$counter = 0;
 						while($row = pg_fetch_assoc($result)) {
 							echo '<tr>';
-							echo '<td><input name="selected_row[]" value="'.$row['id'].'" type="checkbox" /></td>';
+							echo '<td><input name="selected_row[]" value="'.implode("|", array($row['driver'], $row['passenger'], $row['date_of_ride'], $row['time_of_ride'])).'" type="checkbox" /></td>';
 							echo '<td>', $row['driver'], '</td>';
 							echo '<td>', $row['origin'], '</td>';
 							echo '<td>', $row['destination'], '</td>';
@@ -54,13 +71,26 @@
 							echo '<td>', $row['price'], '</td>';
 							echo '<td>', $row['status'], '</td>';
 							echo '</tr>';
+							$counter++;
 						}
+						echo '</form>';
+						if(isset($_POST['delete']) AND isset($_POST['selected_row'])) {
+							$delete_rows = $_POST['selected_row'];
+							for($i = 0; $i < count($delete_rows); $i++) {
+								$curr_row = explode("|", $delete_rows[$i]);
+								error_log($curr_row[3]);
+								pg_query($db, "DELETE FROM bid WHERE driver = '$curr_row[0]' AND passenger = '$curr_row[1]' AND date_of_ride = '$curr_row[2]' AND time_of_ride = '$curr_row[3]'");
+								header("Refresh:0");
+							}
+							
+						}
+						echo '</div>';
+
+						
 					}
 					?>
 				</table>
 		</div>
-<!-- copyright section -->
-<?php include_once('includes/footer.php') ?>
 	</body>
 </html>
 
