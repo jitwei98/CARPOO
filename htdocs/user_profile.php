@@ -87,7 +87,7 @@
 						?>
 					</tr>
 				</table>
-				<input type="submit" name="edit" value="Save" style="float:right;">
+				<input type="submit" name="edit" value="Update Profile" style="float:right;">
 				<a href="delete_user.php" 
 					onclick="return confirm('Are you sure you want to delete your account?')" style="float:left" 
 					class="w3-button w3-red">Delete Account</a>
