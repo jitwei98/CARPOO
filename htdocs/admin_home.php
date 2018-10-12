@@ -45,7 +45,7 @@
 						$db = pg_connect($conn_str);
 						$result = pg_query($db, "SELECT * FROM app_user;");
 						if (pg_num_rows($result) == 0) {
-							echo "No open offers currently.<br>";
+							echo "No users currently.<br>";
 						}
 						else {
 							echo '<h3>';
@@ -67,7 +67,7 @@
 					while ($row = pg_fetch_assoc($result)) {
 						?>
 						<tr>
-							<td><?php echo '<a href="edit_user.php?edit_id='.$row['email'].'">Edit</a>'.'<a href="delete_user.php?delete_id='.$row['email'].'">Delete</a>'; ?>
+							<td><?php echo '<a href="admin_edit_user.php?edit_id='.$row['email'].'">Edit</a>'.'<a href="admin_delete_user.php?delete_id='.$row['email'].'">Delete</a>'; ?>
 							</td>
 							<td><?php echo $row['phone_number'];?></td>
 							<td><?php echo $row['email'];?></td>
