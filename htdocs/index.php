@@ -57,33 +57,33 @@
 					<i class="fa fa-mobile"></i>
 					<h2>Ride</h2>
 					<p>Tap your phone. Get where you're headed the way you want.</p>
-					<a href="about.html" class="btn btn-default">Sign up to ride</a>
+					<a href="/carpool/register" class="btn btn-default">Sign up to ride</a>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-6">
 				<div class="divider-wrapper divider-two">
 					<h2>Login</h2>
 					<form class="w3-container" method="POST">
-			    <label for="email"><b>Email</b></label>
-			    <input type="text" placeholder="Enter Email" name="email" required>
-			    <hr>
-			    <label for="password"><b>Password</b></label>
-			    <input type="password" placeholder="Enter Password" name="password" required>
-			    <hr>
-	      		<input type="submit" name="login" value="Login">
-	      		<button><a href="/carpool/register">Register</a></button>
-	      		<label>
-	        		<input type="checkbox" checked="checked" name="remember"> Remember me
-	      		</label>
-				</form>
-				</div>
+					    <label for="email"><b>Email</b></label>
+					    <input class="form-control" type="text" placeholder="Enter Email" name="email" required>
+					    <hr>
+					    <label for="password"><b>Password</b></label>
+					    <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
+					    <hr>
+			      		<input class="btn btn-outline-dark" type="submit" name="login" value="Login">
+			      		<button ><a href="/carpool/register" class="btn btn-default">Register</a></button>
+			      		<label>
+			        		<input type="checkbox" checked="checked" name="remember"> Remember me
+			      		</label>
+						</form>
+					</div>
 			</div>
 			<div class="col-md-4 col-sm-12">
 				<div class="divider-wrapper divider-three">
 					<i class="fa fa-life-ring"></i>
 					<h2>Drive</h2>
 					<p>Drive when you want. Find opportunities around you.</p>
-					<a href="about.html" class="btn btn-default">Sign up to drive</a>
+					<a href="/carpool/register" class="btn btn-default">Sign up to drive</a>
 				</div>
 			</div>
 		</div>
@@ -92,31 +92,7 @@
 
 
 <!-- copyright section -->
-<div class="copyright">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-6">
-				<p>Copyright © 2084 Company Name</p>
-			</div>
-			<div class="col-md-6 col-sm-6">
-				<ul class="social-icons">
-					<li><a href="#" class="fa fa-facebook"></a></li>
-					<li><a href="#" class="fa fa-twitter"></a></li>
-					<li><a href="#" class="fa fa-dribbble"></a></li>
-					<li><a href="#" class="fa fa-pinterest"></a></li>
-					<li><a href="#" class="fa fa-behance"></a></li>
-					<li><a href="#" class="fa fa-envelope-o"></a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>	
-<script src="js/nivo-lightbox.min.js"></script>
-<script src="js/custom.js"></script>
+<?php include_once('includes/footer.php') ?>
 
 <?php
 		include_once ('includes/config.php');

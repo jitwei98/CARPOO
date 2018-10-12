@@ -427,3 +427,13 @@ footer a:hover {
     padding-top: 30px;
   }
 }
+
+
+#passenger {
+  background: url('../images/passenger-bg.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  padding-top: 180px;
+  padding-bottom: 100px;
+}

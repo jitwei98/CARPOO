@@ -86,5 +86,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- copyright section -->
+<?php include_once('includes/footer.php') ?>
 </body>
 </html>

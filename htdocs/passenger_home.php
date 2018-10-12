@@ -17,7 +17,7 @@
 
 <?php include_once('includes/navbar_passenger.php'); ?>
 
-<div style="margin-left: 10%; margin-right:10%; padding-top: 10px">
+<div style="margin-left: 10%; margin-right:10%; padding-top: 50px">
 	<div class="w3-container">
 		<h1>Open carpool offers</h1>
 		<table class="w3-table-all w3-hoverable">
@@ -84,7 +84,7 @@
 				?>
 		</div>
 	</div>
-	<!-- copyright section -->
+<!-- copyright section -->
 <?php include_once('includes/footer.php') ?>
 </body>
 </html>
