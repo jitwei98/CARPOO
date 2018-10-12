@@ -6,30 +6,16 @@
    }
 ?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<style>
-			a {
-				text-decoration: none;
-			}
-			td a { 
-			   display: block; 
-			}
-		</style>
-	</head>
-	<body>
-		<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
-			<a href="/carpool/home"><h1>Car Pooling</h1></a>
-  			<a href="logout.php" style="float:right;">Log Out</a>
-		</div>
-		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
-		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
-		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
-		</div>
-		<div style="margin-left: 10%" class="w3-container">
+ <html>
+<!-- header -->
+<?php include_once('includes/header.php'); ?>
+
+<body>
+
+<!-- navigation -->
+<?php include_once('includes/navbar_passenger.php'); ?>
+
+		<div style="margin-left: 10%; margin-right:10%; padding-top: 50px" class="w3-container">
 				<h1>History</h1>
 				<table class="w3-table-all w3-hoverable">
 					<tr class="w3-light gray">
@@ -91,6 +77,8 @@
 					?>
 				</table>
 		</div>
+<!-- copyright section -->
+<?php include_once('includes/footer.php') ?>
 	</body>
 </html>
 
