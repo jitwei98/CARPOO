@@ -27,7 +27,7 @@
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
 		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
-		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
+		  <a href="/carpool/passenger_history" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
 		<div style="margin-left: 10%">
 			<div class="w3-container">
@@ -50,10 +50,10 @@
 					    	echo '</tr>';
 					    }
 					    else {
-					    	echo '<h3>';
-					    	echo pg_num_rows($result);
+					    	echo '<div><h3>';
+					    	echo pg_num_rows($result); // Use this or COUNT again?
 					    	echo " offer(s) open";
-					    	echo '</h3>';
+					    	echo '</h3><p><form method="POST"><input type="text" name="query"><input type="submit" name="search" value="Search"></form></p></div>';
 					    	echo '<tr>';
 					    	echo '<td>';
 					    	echo "Driver";
@@ -72,6 +72,11 @@
 					    	echo '</td>';
 					    	echo '<tr>';
 					    	echo '</thead>';
+					    	if (isset($_POST['search'])) {
+					    		$result_query = pg_query($db, "SELECT * FROM offer o WHERE  o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND (o.origin LIKE '$_POST[query]' OR o.destination LIKE '$_POST[query]')");
+					    		// $result = pg_query($db, "SELECT * FROM offer o WHERE o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND (o.origin LIKE '$_POST[query]' OR o.destination LIKE '$_POST[query]') AND NOT EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND (b.status = 'successful' OR b.passenger = '$user'))");
+					    		$result = $result_query;
+					    	}
 					    	while($row = pg_fetch_assoc($result)) {
 					    		echo '<tr>';
 								echo '<td><a href="/carpool/make_bid?d_offer='.$row['date_of_ride'].'&t_offer='.$row['time_of_ride'].'&driver='.$row['driver'].'">';
