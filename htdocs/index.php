@@ -2,7 +2,10 @@
 <?php
 	if(isset($_SESSION['use']))
 	{
-		header("Location: /carpool/home"); 
+		if($_SESSION['use']['isadmin'] == FALSE)
+			header("Location: /carpool/home"); 
+		else
+			header("Location: /carpool/admin_home"); 
 	}	
 ?>
 <!DOCTYPE html>
@@ -54,8 +57,8 @@
 						// if (password_verify($pword, $phash)) {
 						if ($pword == $phash) {
 							$_SESSION['use']=$email;
-							if ($_POST['email'] == "admin") {
-								header("Location: /carpool/admin");	
+							if ($row['isadmin'] == TRUE) {
+								header("Location: /carpool/admin_home");	
 							} else {
 								header("Location: /carpool/home");
 							}
