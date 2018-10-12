@@ -11,26 +11,15 @@
 
   <!DOCTYPE html>
   <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<style>
-  	a {
-  		text-decoration: none;
-  	}
-  </style>
-</head>
+<!-- header -->
+<?php include_once('includes/header.php'); ?>
+
 <body>
-	<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
-		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
-		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
-	</div>
-	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		<a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
-		<a href="#" class="w3-bar-item w3-button">User Profile</a>
-		<a href="/carpool/passenger_history" class="w3-bar-item w3-button">Car Pool History</a>
-	</div>
-	<div style="margin-left: 10%">
+
+<!-- navigation -->
+<?php include_once('includes/navbar_passenger.php'); ?>
+
+	<div style="margin-left: 10%; margin-right:10%; padding-top: 50px">
 		<div class="w3-container">
 			<h1>User Profile</h1>
 			<form class="w3-container" method="POST">
@@ -87,7 +76,7 @@
 						?>
 					</tr>
 				</table>
-				<input type="submit" name="edit" value="Save" style="float:right;">
+				<input type="submit" name="edit" value="Update Profile" style="float:right;">
 				<a href="delete_user.php" 
 					onclick="return confirm('Are you sure you want to delete your account?')" style="float:left" 
 					class="w3-button w3-red">Delete Account</a>
@@ -144,5 +133,7 @@
 			</h1>
 		</div>
 	</div>
+<!-- copyright section -->
+<?php include_once('includes/footer.php') ?>
 </body>
 </html>
