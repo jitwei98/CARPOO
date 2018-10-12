@@ -7,9 +7,11 @@
 ?>
 <!DOCTYPE html>
 <html>
+
 <!-- header -->
 <?php include_once('includes/header.php'); ?>
 
+<!-- navigation -->
 <body>
 <div class="container-fluid">
 	<div class="navbar navbar-default navbar-static-top" role="navigation">
