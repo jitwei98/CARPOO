@@ -42,7 +42,7 @@
 					include_once ('includes/config.php');
 					$db = pg_connect($conn_str);
 
-					$result = pg_query($db, "SELECT * FROM offer o, bid b WHERE o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND o.driver = b.driver AND b.passenger = '$user'");
+					$result = pg_query($db, "SELECT * FROM offer o, bid b WHERE o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND o.driver = b.driver AND b.passenger = '$user' ORDER BY b.date_of_ride ASC");
 					if (pg_num_rows($result) == 0) {
 						echo 'History is empty. </tr>';
 					} else {
