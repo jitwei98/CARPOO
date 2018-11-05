@@ -128,11 +128,12 @@ if(!isset($_SESSION['use']))
 				if (!empty($_POST['edit']) && isModified()) {
 					if (update_bid($db, $row)) { // affected rows > 0
 						// echo "Bid successfully updated!<br>";
-						$url = 'Location: /carpool/admin_edit_bid.php?edit_date='.
-								$row['date_of_ride'].'&edit_time='.
-								$row['time_of_ride'].'&edit_driver='.
-								$row['driver'].'&edit_passenger='.
-								$row['passenger'];
+						// $url = 'Location: /carpool/admin_edit_bid.php?edit_date='.
+						// 		$row['date_of_ride'].'&edit_time='.
+						// 		$row['time_of_ride'].'&edit_driver='.
+						// 		$row['driver'].'&edit_passenger='.
+						// 		$row['passenger'];
+						$url = 'Location: /carpool/admin_bid';
 						header($url);
 					} else {
 						echo "Error updating bid!<br>";
