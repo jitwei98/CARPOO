@@ -25,15 +25,15 @@
 		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 	</div>
 	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		<a href="#" class="w3-bar-item w3-button">app_user</a>
-		<a href="/carpool/admin_bid" class="w3-bar-item w3-button">bid</a>
-		<a href="/carpool/admin_car" class="w3-bar-item w3-button">car</a>
+		<a href="/carpool/admin_home" class="w3-bar-item w3-button">app_user</a>
+		<a href="#" class="w3-bar-item w3-button">bid</a>
+		<a href="#" class="w3-bar-item w3-button">car</a>
 		<a href="#" class="w3-bar-item w3-button">drive</a>
 		<a href="#" class="w3-bar-item w3-button">offer</a>
 	</div>
 	<div style="margin-left: 10%; margin-top:74px;">
 		<div class="w3-container">
-			<h1>app_user</h1>
+			<h1>car</h1>
 			<table class="w3-table-all w3-hoverable">
 				<thead>
 					<tr class="w3-light gray">
@@ -45,26 +45,23 @@
 						$user = $_SESSION['use'];
 						include_once ('includes/config.php');
 						$db = pg_connect($conn_str);
-						$result = pg_query($db, "SELECT * FROM app_user;");
+						$result = pg_query($db, "SELECT * FROM car;");
 
-						$num_user = pg_query($db, "SELECT COUNT(*) FROM app_user;");
-						$num_user_result = pg_fetch_assoc($num_user);
+						$count_result = pg_query($db, "SELECT COUNT(*) FROM car;");
+						$count_row = pg_fetch_assoc($count_result);
 
 						if (pg_num_rows($result) == 0) {
-							echo "No users currently.<br>";
+							echo "No cars currently.<br>";
 						}
 						else {
 							echo '<h3>';
-					    	echo $num_user_result['count'];//pg_num_rows($result);
-					    	echo " user(s) available";
+					    	echo $count_row['count'];//pg_num_rows($result);
+					    	echo " car(s) available";
 					    	echo '</h3>';
 					    	echo 	'<th>Actions</th>
-					    	<th>phone_number</th>
-					    	<th>email</th>
-					    	<th>name</th>
-					    	<th>gender</th>
-					    	<th>dob</th>
-					    	<th>password</th>
+					    	<th>plate_number</th>
+					    	<th>model</th>
+					    	<th>color</th>
 					    	';
 					    }
 					    ?>
@@ -75,14 +72,16 @@
 					while ($row = pg_fetch_assoc($result)) {
 						?>
 						<tr>
-							<td><?php echo '<a href="admin_edit_user.php?edit_id='.$row['email'].'">Edit</a>'.'<a href="admin_delete_user.php?delete_id='.$row['email'].'">Delete</a>'; ?>
+							<td><?php echo '<a href="admin_edit_car.php?
+							edit_id='.$row['plate_number'].'
+							">Edit</a>'.'
+							<a href="admin_delete_car.php?
+							delete_id='.$row['plate_number'].'
+							">Delete</a>'; ?>
 							</td>
-							<td><?php echo $row['phone_number'];?></td>
-							<td><?php echo $row['email'];?></td>
-							<td><?php echo $row['name'];?></td>
-							<td><?php echo $row['gender'];?></td>
-							<td><?php echo $row['dob'];?></td>
-							<td><?php echo $row['password']?></td>
+							<td><?php echo $row['plate_number'];?></td>
+							<td><?php echo $row['model'];?></td>
+							<td><?php echo $row['color'];?></td>
 						</tr>
 						<?php 
 					}
