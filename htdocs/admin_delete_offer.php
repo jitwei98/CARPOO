@@ -58,7 +58,7 @@ if(!isset($_SESSION['use']))
 				<h1>
 					<?php 
 
-					function delete_offer($db, $row) {
+					function delete_offer($db) {
 					$query = "DELETE FROM offer WHERE 
 						date_of_ride='$_GET[delete_date]' AND
 						time_of_ride='$_GET[delete_time]' AND
@@ -67,7 +67,7 @@ if(!isset($_SESSION['use']))
 				}
 				
 				if (!empty($_POST['delete'])) {
-					if (delete_offer($db, $row)) { // affected rows > 0
+					if (delete_offer($db)) { // affected rows > 0
 						echo "Row successfully deleted!<br>";
 						// header("Location: /carpool/admin_home");
 					} else {

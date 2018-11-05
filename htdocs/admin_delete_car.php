@@ -56,14 +56,14 @@ if(!isset($_SESSION['use']))
 				<h1>
 					<?php 
 
-					function delete_car($db, $row) {
+					function delete_car($db) {
 					$query = "DELETE FROM car WHERE 
 										plate_number='$_GET[delete_id]';";
 					return pg_query($db, $query);
 				}
 				
 				if (!empty($_POST['delete'])) {
-					if (delete_car($db, $row)) { // affected rows > 0
+					if (delete_car($db)) { // affected rows > 0
 						echo "Car successfully deleted!<br>";
 						// header("Location: /carpool/admin_home");
 					} else {

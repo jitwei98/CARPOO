@@ -60,7 +60,7 @@ if(!isset($_SESSION['use']))
 				<h1>
 					<?php 
 
-					function delete_bid($db, $row) {
+					function delete_bid($db) {
 					$query = "DELETE FROM bid WHERE 
 										date_of_ride='$_GET[delete_date]' AND
 										time_of_ride='$_GET[delete_time]' AND
@@ -70,7 +70,7 @@ if(!isset($_SESSION['use']))
 				}
 				
 				if (!empty($_POST['delete'])) {
-					if (delete_bid($db, $row)) { // affected rows > 0
+					if (delete_bid($db)) { // affected rows > 0
 						echo "Bid successfully deleted!<br>";
 						// header("Location: /carpool/admin_home");
 					} else {

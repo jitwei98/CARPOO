@@ -58,7 +58,7 @@ if(!isset($_SESSION['use']))
 				<h1>
 					<?php 
 
-					function delete_drive($db, $row) {
+					function delete_drive($db) {
 					$query = "DELETE FROM drive WHERE 
 						driver='$_GET[delete_driver]' AND
 						car='$_GET[delete_car]';";
@@ -66,7 +66,7 @@ if(!isset($_SESSION['use']))
 				}
 				
 				if (!empty($_POST['delete'])) {
-					if (delete_drive($db, $row)) { // affected rows > 0
+					if (delete_drive($db)) { // affected rows > 0
 						echo "Row successfully deleted!<br>";
 						// header("Location: /carpool/admin_home");
 					} else {

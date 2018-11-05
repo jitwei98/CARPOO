@@ -55,7 +55,7 @@ if(!isset($_SESSION['use']))
 				<h1>
 					<?php 
 
-					function delete_user($db, $user, $row) {
+					function delete_user($db) {
 					if ($user == $_SESSION['use']) { // cannot delete yourself
 						echo "You cannot delete yourself!<br>";
 						return false;
@@ -65,7 +65,7 @@ if(!isset($_SESSION['use']))
 				}
 				
 				if (!empty($_POST['delete'])) {
-					if (delete_user($db, $_GET[delete_id], $row)) { // affected rows > 0
+					if (delete_user($db)) { // affected rows > 0
 						echo "User profile successfully deleted!<br>";
 						// header("Location: /carpool/admin_home");
 					} else {
