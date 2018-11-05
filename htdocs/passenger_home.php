@@ -72,7 +72,7 @@
 					    	echo '</th>';
 					    	echo '</thead>';
 					    	if (isset($_POST['search'])) {
-					    		$result_query = pg_query($db, "SELECT * FROM offer o WHERE  o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND (o.origin LIKE '$_POST[query]' OR o.destination LIKE '$_POST[query]')");
+					    		$result_query = pg_query($db, "SELECT * FROM offer o WHERE  o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND (o.origin LIKE '%$_POST[query]%' OR o.destination LIKE '%$_POST[query]%')");
 					    		// $result = pg_query($db, "SELECT * FROM offer o WHERE o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND (o.origin LIKE '$_POST[query]' OR o.destination LIKE '$_POST[query]') AND NOT EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND (b.status = 'successful' OR b.passenger = '$user'))");
 					    		$result = $result_query;
 					    	}
