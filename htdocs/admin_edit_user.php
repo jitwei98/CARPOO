@@ -29,8 +29,8 @@ if(!isset($_SESSION['use']))
 		<a href="/carpool/admin_user" class="w3-bar-item w3-button">app_user</a>
 		<a href="/carpool/admin_bid" class="w3-bar-item w3-button">bid</a>
 		<a href="/carpool/admin_car" class="w3-bar-item w3-button">car</a>
-		<a href="#" class="w3-bar-item w3-button">drive</a>
-		<a href="#" class="w3-bar-item w3-button">offer</a>
+		<a href="/carpool/admin_drive" class="w3-bar-item w3-button">drive</a>
+		<a href="/carpool/admin_offer" class="w3-bar-item w3-button">offer</a>
 	</div>
 	<div style="margin-left: 10%; margin-top:74px;">
 		<div class="w3-container">
@@ -80,9 +80,9 @@ if(!isset($_SESSION['use']))
 							<!-- TODO: date input instead of text input -->
 							<?php echo '<td><input type="date" value="'.$row['dob'].'" name="dob_updated"></td>'; ?>
 						</tr>
-					
-				</table>
-				<input type="submit" name="edit" value="Submit">
+						
+					</table>
+					<input type="submit" name="edit" value="Submit">
 				<?php }?>
 			</form>
 

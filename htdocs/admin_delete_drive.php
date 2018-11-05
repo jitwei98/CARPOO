@@ -37,18 +37,20 @@ if(!isset($_SESSION['use']))
 			<?php 
 			include_once ('includes/config.php');
 			$db = pg_connect($conn_str);
-			$result = pg_query($db, "SELECT * FROM car WHERE 
-						plate_number='$_GET[delete_id]'");
+			$result = pg_query($db, "SELECT * FROM drive WHERE 
+						driver='$_GET[delete_driver]' AND
+						car='$_GET[delete_car]'
+						");
 			if (pg_num_rows($result) == 0) {
-				echo "<h1>Car not found!<br></h1>";
-				echo "<a class=\"w3-button w3-black\" href='admin_car.php'>Go Back</a>";
+				echo "<h1>Drive not found!<br></h1>";
+				echo "<a class=\"w3-button w3-black\" href='admin_drive.php'>Go Back</a>";
 			} else if (!result) {
 				echo pg_last_error($db)."<br>";
 			} else {
 			?>
 				<h1>Are you sure you want to delete this row?</h1>
 				<form class="w3-container" method="POST">
-					<a class="w3-button w3-black" href='admin_car.php'>Go Back</a>
+					<a class="w3-button w3-black" href='admin_drive.php'>Go Back</a>
 					<input class="w3-button w3-black" type="submit" name="delete" value="Delete">
 				</form>
 			<?php } ?>
@@ -56,18 +58,19 @@ if(!isset($_SESSION['use']))
 				<h1>
 					<?php 
 
-					function delete_car($db, $row) {
-					$query = "DELETE FROM car WHERE 
-										plate_number='$_GET[delete_id]';";
+					function delete_drive($db, $row) {
+					$query = "DELETE FROM drive WHERE 
+						driver='$_GET[delete_driver]' AND
+						car='$_GET[delete_car]';";
 					return pg_query($db, $query);
 				}
 				
 				if (!empty($_POST['delete'])) {
-					if (delete_car($db, $row)) { // affected rows > 0
-						echo "Car successfully deleted!<br>";
+					if (delete_drive($db, $row)) { // affected rows > 0
+						echo "Row successfully deleted!<br>";
 						// header("Location: /carpool/admin_home");
 					} else {
-						echo "Error deleting car!<br>";
+						echo "Error deleting row!<br>";
 						echo pg_last_error($db)."<br>";
 					}
 				}
