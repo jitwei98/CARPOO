@@ -54,23 +54,22 @@
 					    	echo pg_num_rows($result); // Use this or COUNT again?
 					    	echo " offer(s) open";
 					    	echo '</h3><p><form method="POST"><input type="text" name="query"><input type="submit" name="search" value="Search"></form></p></div>';
-					    	echo '<tr>';
-					    	echo '<td>';
+							echo '<thead>';
+					    	echo '<th>';
 					    	echo "Driver";
-					    	echo '</td>';
-					    	echo '<td>';
+					    	echo '</th>';
+					    	echo '<th>';
 					    	echo "Origin of ride";
-					    	echo '</td>';
-					    	echo '<td>';
+					    	echo '</th>';
+					    	echo '<th>';
 					    	echo "Destination of ride";
-					    	echo '</td>';
-					    	echo '<td>';
+					    	echo '</th>';
+					    	echo '<th>';
 					    	echo "Date of ride";
-					    	echo '</td>';
-					    	echo '<td>';
+					    	echo '</th>';
+					    	echo '<th>';
 					    	echo 'Time of ride';
-					    	echo '</td>';
-					    	echo '<tr>';
+					    	echo '</th>';
 					    	echo '</thead>';
 					    	if (isset($_POST['search'])) {
 					    		$result_query = pg_query($db, "SELECT * FROM offer o WHERE  o.driver <> '$user' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND (o.origin LIKE '$_POST[query]' OR o.destination LIKE '$_POST[query]')");
