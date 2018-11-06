@@ -21,8 +21,8 @@
 	</head>
 	<body>
 		<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
-			<a href="/carpool/home"><h1>Car Pooling</h1></a>
-  			<a href="logout.php" style="float:right;">Log Out</a>
+			<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
+  			<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 		</div>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
@@ -30,7 +30,30 @@
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
 		<div style="margin-left: 10%" class="w3-container">
-				<h1>History</h1>
+				<h1>Rider History</h1>
+				<div class="w3-card-4">
+					<div class="w3-container w3-gray">
+						<h3>Search</h3>
+					</div>
+					<br>
+					<form class="w3-row-padding" method="POST">
+						<div class="w3-cell">
+							<label>From</label>
+							<input name="fromdate" class="w3-input w3-border" type="date">
+						</div>
+						<div class="w3-cell">
+							<label>To</label>
+							<input name="todate" class="w3-input w3-border" type="date">
+						</div>
+						<div class="w3-cell">
+							<br>
+							<button name="search" class="w3-button w3-black" type="submit">Search</button>
+						</div>
+					</form>
+					<br>
+				</div>
+				<br>
+
 				<table class="w3-table-all w3-hoverable">
 					<tr class="w3-light gray">
 					<?php
@@ -41,8 +64,22 @@
 					$user = $_SESSION['use'];
 					include_once ('includes/config.php');
 					$db = pg_connect($conn_str);
-
-					$result = pg_query($db, "SELECT * FROM offer o, bid b WHERE o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND o.driver = b.driver AND b.passenger = '$user' ORDER BY b.date_of_ride ASC");
+					if(isset($_POST['search'])) {
+						$from_date = strtotime($_POST['fromdate']);
+						$to_date = strtotime($_POST['todate']);
+						
+						$result = pg_query($db, 
+						"SELECT * FROM offer o, bid b 
+						WHERE o.date_of_ride = b.date_of_ride
+						AND o.date_of_ride >= to_timestamp($from_date)
+						AND o.date_of_ride <= to_timestamp($to_date)
+						AND o.driver = b.driver
+						AND b.passenger = '$user'
+						ORDER BY b.date_of_ride ASC");
+					}
+					else {
+						$result = pg_query($db, "SELECT * FROM offer o, bid b WHERE o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND o.driver = b.driver AND b.passenger = '$user' ORDER BY b.date_of_ride ASC");
+					}
 					if (pg_num_rows($result) == 0) {
 						echo 'History is empty. </tr>';
 					} else {
@@ -82,13 +119,13 @@
 								pg_query($db, "DELETE FROM bid WHERE driver = '$curr_row[0]' AND passenger = '$curr_row[1]' AND date_of_ride = '$curr_row[2]' AND time_of_ride = '$curr_row[3]'");
 								header("Refresh:0");
 							}
-							
 						}
-						echo '</div>';
-
 						
+						
+						echo '</div>';
 					}
 					?>
+					
 				</table>
 		</div>
 	</body>
