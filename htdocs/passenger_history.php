@@ -30,29 +30,30 @@
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
 		<div style="margin-left: 10%" class="w3-container">
-				<h1>Rider History</h1>
-				<div class="w3-card-4">
-					<div class="w3-container w3-gray">
-						<h3>Search</h3>
-					</div>
-					<br>
-					<form class="w3-row-padding" method="POST">
-						<div class="w3-cell">
-							<label>From</label>
-							<input name="fromdate" class="w3-input w3-border" type="date">
-						</div>
-						<div class="w3-cell">
-							<label>To</label>
-							<input name="todate" class="w3-input w3-border" type="date">
-						</div>
-						<div class="w3-cell">
-							<br>
-							<button name="search" class="w3-button w3-black" type="submit">Search</button>
-						</div>
-					</form>
-					<br>
+			<h1>Rider History</h1>
+			<div class="w3-card-4">
+				<div class="w3-container w3-gray">
+					<h3>Search</h3>
 				</div>
 				<br>
+				<form class="w3-row-padding" method="POST">
+					<div class="w3-cell">
+						<label>From</label>
+						<input name="fromdate" class="w3-input w3-border" type="date">
+					</div>
+					<div class="w3-cell">
+						<label>To</label>
+						<input name="todate" class="w3-input w3-border" type="date">
+					</div>
+					<div class="w3-cell">
+						<br>
+						<button name="search" class="w3-button w3-black" type="submit">Search</button>
+					</div>
+				</form>
+				<br>
+			</div>
+			<br>
+		</div>
 
 				<table class="w3-table-all w3-hoverable">
 					<tr class="w3-light gray">

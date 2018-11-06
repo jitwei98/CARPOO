@@ -5,26 +5,31 @@
   	header("Location: /carpool");  
   }
   ?>
-  <!DOCTYPE html>
-  <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<style>
-  	a {
-  		text-decoration: none;
-  	}
-  	td a { 
-  		display: block; 
-  	}
-  </style>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		a {
+			text-decoration: none;
+		}
+
+		td a {
+			display: block;
+		}
+	</style>
 </head>
+
 <body>
 	<div class="w3-container w3-black w3-top">
-		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
+		<a href="/carpool/home" style="float:left;">
+			<h1>Car Pooling</h1>
+		</a>
 		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 	</div>
-	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
+	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%">
 		<a href="/carpool/admin_home" class="w3-bar-item w3-button">app_user</a>
 		<a href="#" class="w3-bar-item w3-button">bid</a>
 		<a href="/carpool/admin_car" class="w3-bar-item w3-button">car</a>
@@ -32,6 +37,31 @@
 		<a href="/carpool/admin_offer" class="w3-bar-item w3-button">offer</a>
 	</div>
 	<div style="margin-left: 10%; margin-top:74px;">
+		<div class="w3-container">
+			<br>
+			<div class="w3-card-4">
+				<div class="w3-container w3-gray">
+					<h3>Search</h3>
+				</div>
+				<br>
+				<form class="w3-row-padding" method="POST">
+					<div class="w3-cell">
+						<label>From</label>
+						<input name="fromdate" class="w3-input w3-border" type="date">
+					</div>
+					<div class="w3-cell">
+						<label>To</label>
+						<input name="todate" class="w3-input w3-border" type="date">
+					</div>
+					<div class="w3-cell">
+						<br>
+						<button name="search" class="w3-button w3-black" type="submit">Search</button>
+					</div>
+				</form>
+				<br>
+			</div>
+			<br>
+		</div>
 		<div class="w3-container">
 			<h1>bid</h1>
 			<table class="w3-table-all w3-hoverable">
@@ -45,9 +75,26 @@
 						$user = $_SESSION['use'];
 						include_once ('includes/config.php');
 						$db = pg_connect($conn_str);
-						$result = pg_query($db, "SELECT * FROM bid;");
+						
+						
+						if(isset($_POST['search'])) {
+							$from_date = strtotime($_POST['fromdate']);
+							$to_date = strtotime($_POST['todate']);
+							
+							$result = pg_query($db, 
+							"SELECT * FROM bid b
+							WHERE b.date_of_ride >= to_timestamp($from_date)
+							AND b.date_of_ride <= to_timestamp($to_date)
+							ORDER BY b.date_of_ride ASC");
 
-						$count_result = pg_query($db, "SELECT COUNT(*) FROM bid;");
+							$count_result = pg_query($db, 
+							"SELECT COUNT(*) FROM bid b
+							WHERE b.date_of_ride >= to_timestamp($from_date)
+							AND b.date_of_ride <= to_timestamp($to_date);");
+						} else {
+							$result = pg_query($db, "SELECT * FROM bid;");
+							$count_result = pg_query($db, "SELECT COUNT(*) FROM bid;");
+						}
 						$count_row = pg_fetch_assoc($count_result);
 
 						if (pg_num_rows($result) == 0) {
@@ -74,8 +121,9 @@
 				if (pg_num_rows($result) > 0) {
 					while ($row = pg_fetch_assoc($result)) {
 						?>
-						<tr>
-							<td><?php echo '<a href="admin_edit_bid.php?
+				<tr>
+					<td>
+						<?php echo '<a href="admin_edit_bid.php?
 							edit_date='.$row['date_of_ride'].'
 							&edit_time='.$row['time_of_ride'].'
 							&edit_driver='.$row['driver'].'
@@ -87,15 +135,27 @@
 							&delete_driver='.$row['driver'].'
 							&delete_passenger='.$row['passenger'].'
 							">Delete</a>'; ?>
-							</td>
-							<td><?php echo $row['date_of_ride'];?></td>
-							<td><?php echo $row['time_of_ride'];?></td>
-							<td><?php echo $row['driver'];?></td>
-							<td><?php echo $row['passenger'];?></td>
-							<td><?php echo $row['price'];?></td>
-							<td><?php echo $row['status']?></td>
-						</tr>
-						<?php 
+					</td>
+					<td>
+						<?php echo $row['date_of_ride'];?>
+					</td>
+					<td>
+						<?php echo $row['time_of_ride'];?>
+					</td>
+					<td>
+						<?php echo $row['driver'];?>
+					</td>
+					<td>
+						<?php echo $row['passenger'];?>
+					</td>
+					<td>
+						<?php echo $row['price'];?>
+					</td>
+					<td>
+						<?php echo $row['status']?>
+					</td>
+				</tr>
+				<?php 
 					}
 				}
 				?>
@@ -103,4 +163,5 @@
 		</div>
 	</div>
 </body>
+
 </html>
