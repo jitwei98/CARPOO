@@ -22,6 +22,7 @@
 		?>
 		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
+		  <a href="/carpool/passenger_bids" class="w3-bar-item w3-button">View Bids</a>
 		  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
 		  <a href="#" class="w3-bar-item w3-button">Car Pool History</a>
 		</div>
@@ -71,7 +72,7 @@
 						AND o.date_of_ride >= to_timestamp($from_date)
 						AND o.date_of_ride <= to_timestamp($to_date)
 						AND o.driver = b.driver
-						AND b.passenger = '$user'
+						AND b.passenger = '$user' 
 						ORDER BY b.date_of_ride ASC");
 					}
 					else {
