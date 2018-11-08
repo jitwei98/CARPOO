@@ -1,9 +1,6 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-  {
-  	header("Location: /carpool");  
-  }
+	include_once ('includes/check_user.php');
  	include_once ('includes/config.php');
 	$db = pg_connect($conn_str);
 	$driver = $_SESSION['use'];
