@@ -1,3 +1,4 @@
+<!-- not used -->
 <?php   session_start();  ?>
 <?php
 	include_once ('includes/check_user.php');
