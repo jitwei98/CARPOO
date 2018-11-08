@@ -1,9 +1,6 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-  {
-  	header("Location: /carpool");  
-  }
+	include_once ('includes/check_user.php');
  	include_once ('includes/config.php');
 	$db = pg_connect($conn_str);
 	$driver = $_SESSION['use'];
@@ -90,11 +87,13 @@
 							// echo "Error: This car is already registered with another driver!<br>";
 							echo pg_last_error($db) . "<br>";
 						}
-						$query .= "DELETE FROM drive WHERE drive = '$driver';";
-						$query .= "INSERT INTO drive VALUES ('$driver', '$plate_number');";
+						//$query .= "DELETE FROM drive WHERE drive = '$driver';";
+						//$query .= "INSERT INTO drive VALUES ('$driver', '$plate_number');";
+						$query .= "UPDATE drive SET car='$plate_number' WHERE driver='$driver';";
+						// trigger the delete_car() that will delete a car if the car is not driven by anyone
 						// $query .= "DELETE FROM  car WHERE plate_number='$row[plate_number]';";
 					} else {
-						$query .= "UPDATE car SET plate_number='$plate_number', model='$model', color='$color';";
+						$query .= "UPDATE car SET model='$model', color='$color' WHERE plate_number='$plate_number';" ;
 					}
 
 					return pg_query($db, $query);

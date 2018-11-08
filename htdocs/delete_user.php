@@ -1,5 +1,6 @@
 <?php   session_start();  ?>
 <?php 
+	include_once ('includes/check_user.php');
 	include_once ('includes/config.php');
 	$db = pg_connect($conn_str);
 	$user = $_SESSION['use'];

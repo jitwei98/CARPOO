@@ -1,16 +1,13 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-  {
-  	header("Location: /carpool");  
-  }
-  include_once ('includes/config.php');
-  $db = pg_connect($conn_str);
-  $driver = $_SESSION['use'];
-  date_default_timezone_set('Asia/Singapore');
-  $date_curr = date("Y/m/d");
-  $time_curr = date("h/i/sa");
-  ?>
+	include_once ('includes/check_user.php');
+	include_once ('includes/config.php');
+	$db = pg_connect($conn_str);
+	$driver = $_SESSION['use'];
+	date_default_timezone_set('Asia/Singapore');
+	$date_curr = date("Y/m/d");
+	$time_curr = date("h/i/sa");
+?>
   <!DOCTYPE html>
   <html>
   <head>

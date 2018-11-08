@@ -1,10 +1,7 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-   {
-       header("Location: /carpool");  
-   }
-   include_once ('includes/config.php');
+	include_once ('includes/check_user.php');
+	include_once ('includes/config.php');
 	$db = pg_connect($conn_str);
 	$driver = $_SESSION['use'];
 	date_default_timezone_set('Asia/Singapore');
@@ -42,7 +39,7 @@
 				<thead>
 					<tr class="w3-black">
 							<?php
-								$result = pg_query($db, "SELECT * FROM offer o WHERE o.driver = '$driver' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride > '$date_curr') AND EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND b.status = 'successful')");
+								$result = pg_query($db, "SELECT * FROM offer o WHERE o.driver = '$driver' AND (o.date_of_ride = '$date_curr' OR o.date_of_ride < '$date_curr') AND EXISTS (SELECT * FROM bid b WHERE o.driver=b.driver AND o.date_of_ride = b.date_of_ride AND o.time_of_ride = b.time_of_ride AND b.status = 'successful')");
 		   						if (pg_num_rows($result) == 0) {
 		   							echo '<h3>History is empty.</h3>';
 		   							echo '</tr>';
