@@ -1,10 +1,10 @@
 <?php   session_start();  ?>
 <?php
 	if(isset($_SESSION['use'])){
-		if (($_SESSION['isadmin']) == "f"){
+		if (($_SESSION['isadmin']) == 'f'){
 			header("Location: /carpool/home"); 
 		}
-		else{
+		else {
 			header("Location: /carpool/admin_home"); 
 		}
 	}
