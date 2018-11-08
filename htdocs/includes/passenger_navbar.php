@@ -1,17 +1,3 @@
-<!-- <nav class="navbar navbar-inverse" style="padding:20px 0;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Nani Pooling</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-		<li><a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a></li>
-		<li><a href="/carpool/passenger_bids" class="w3-bar-item w3-button">View Bids</a></li>
-		<li><a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a></li>
-		<li><a href="/carpool/passenger_history" class="w3-bar-item w3-button">Car Pool History</a></li>
-		<li><a href="logout.php" class="w3-bar-item w3-button">Log Out</a></li>
-    </ul>
-  </div>
-</nav> -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">

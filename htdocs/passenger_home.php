@@ -73,11 +73,11 @@
 			    }
 			    echo '</table>';
 				?>
+				<?php
+					include_once ("includes/footer.php");
+				?>
 	</div>
 	<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
-	<?php
-		include_once ("includes/footer.php");
-	?>
 	</body>
 </html>
 
