@@ -10,29 +10,11 @@
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<style>
-			a {
-				text-decoration: none;
-			}
-			td a { 
-			   display: block; 
-			}
-		</style>
-	</head>
-	<body>
-		<?php 
-			include_once ('includes/navbar.php');
-		?>	
-		<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%">
-			<a href="/carpool/offer_form" class="w3-bar-item w3-button">Offer A Car Pool</a>
-			<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Open Offers</a>
-			<a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
-			<a href="/carpool/driver_history" class="w3-bar-item w3-button">History</a>
-		</div>
-		<div style="margin-left: 10%">
+	<?php
+		include_once ('includes/header.php'); 
+		include_once ('includes/driver_navbar.php');
+	?>
+	<div class="w3-container page_container">
 			<div class="w3-container">
 				<h1>History</h1>
 				<table class="w3-table-all w3-hoverable">
@@ -95,5 +77,8 @@
 							?>
 			</div>
 		</div>
+		<?php
+			include_once ("includes/footer.php");
+		?>
 	</body>
 </html>
