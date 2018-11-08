@@ -49,8 +49,7 @@ CREATE OR REPLACE FUNCTION isValidCarPlate ()
 	BEGIN
 		IF checkFirstLetter(new.plate_number, 'S') = FALSE THEN
 			RETURN NULL;
-		END IF;
-		IF validChecksumLetter(checksum(new.plate_number)+1, 'AZYXUTSRPMLKJHGEDCB', RIGHT(new.plate_number, 1)) THEN
+		ELSEIF validChecksumLetter(checksum(new.plate_number)+1, 'AZYXUTSRPMLKJHGEDCB', RIGHT(new.plate_number, 1)) THEN
 			RETURN NEW;
 		ELSE
 			RAISE EXCEPTION 'Invalid carplate!';
