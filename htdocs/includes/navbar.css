@@ -123,3 +123,8 @@ body {
 .w3-row {
   margin-top: 10px;
 }
+
+/* driver_home.php */
+.dashboard_container {
+  margin-top: 20px;
+}
