@@ -21,11 +21,8 @@
 </style>
 </head>
 <body>
-	<div class="w3-container w3-black w3-top">
-		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
-		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
-	</div>
 	<?php 
+		include_once ('includes/navbar.php');
 		include_once ('includes/admin_sidenav.php');
 	?>
 	<div style="margin-left: 10%; margin-top:74px;">
