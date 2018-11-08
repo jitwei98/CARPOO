@@ -1,12 +1,12 @@
 -- Note: Need to figure out which column requires ON UPDATE CASCADE ON DELETE CASCADE
 
-CREATE TABLE car (
+CREATE TABLE IF NOT EXISTS car (
 	plate_number VARCHAR(8) PRIMARY KEY,
 	model VARCHAR(16) NOT NULL,
 	color VARCHAR(16) NOT NULL
 );
 
-CREATE TABLE app_user (
+CREATE TABLE IF NOT EXISTS app_user (
 	phone_number CHAR(8) UNIQUE NOT NULL,
 	email VARCHAR(32) PRIMARY KEY,
 	name VARCHAR(32) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE app_user (
 	isadmin BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE drive (
+CREATE TABLE IF NOT EXISTS drive (
 	driver VARCHAR(32),
 	car VARCHAR(8),
 	PRIMARY KEY (driver, car),
@@ -24,7 +24,7 @@ CREATE TABLE drive (
 	FOREIGN KEY (car) REFERENCES car(plate_number) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE offer(
+CREATE TABLE IF NOT EXISTS offer (
 	date_of_ride DATE,
 	time_of_ride TIME,
 	driver VARCHAR(32),
@@ -35,7 +35,7 @@ CREATE TABLE offer(
 	CHECK(origin <> destination)
 );
 
-CREATE TABLE bid (
+CREATE TABLE IF NOT EXISTS bid (
 	date_of_ride DATE, 
 	time_of_ride TIME, 
 	driver VARCHAR(32),
