@@ -1,9 +1,6 @@
 <?php   session_start();  ?>
 <?php
-  if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
-   {
-       header("Location: /carpool");  
-   }
+	include_once ('includes/check_user.php');
 // If user is already a driver redirect to home page
    include_once ('includes/config.php');
    $db = pg_connect($conn_str);
@@ -11,7 +8,7 @@
    $isRegisteredDriver = pg_fetch_row(pg_query($db, "SELECT * FROM drive WHERE driver = '$user'"));
 // echo $isRegisteredDriver[0];
    if ($isRegisteredDriver) {
-   	header("Location: /carpool/home");
+   	header("Location: /carpool/");
    }
 
 ?>
