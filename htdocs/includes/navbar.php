@@ -1,7 +1,15 @@
-<!-- Kel version of sticky navbar -->
-<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
-<!-- Jit's version of sticky navbar -->
-<!-- <div class="w3-container w3-black w3-top"> -->
-		<a href="/carpool/" style="float:left;"><h1>Nani Pooling</h1></a>
-		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="/carpool/home" class="navbar-brand"> CARPOOL</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout.php">Log Out</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>

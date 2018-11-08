@@ -45,7 +45,6 @@
 	<div style="margin-left: 10%">
 		<div class="w3-container">
 			<h1>Open Carpool Offers</h1>
-			
 							<?php
 							if (pg_num_rows($result) == 0) {
 								echo '<table class="w3-table-all w3-hoverable">';
