@@ -30,7 +30,7 @@
 						    <td><input type="text" placeholder="Enter Destination" name="destination" required></td>
 						</tr>
 					</table>
-		      		<input type="submit" name="offer" value="Initiate Offer">
+		      		<input class="w3-button w3-khaki" type="submit" name="offer" value="Initiate Offer" style="float:right;">
 				</form>
 			</div>
 			<?php
