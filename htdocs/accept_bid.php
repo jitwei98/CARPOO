@@ -1,6 +1,6 @@
 <?php   session_start();  ?>
 <?php
-	include_once ('includes/check_admin.php');
+	include_once ('includes/check_user.php');
 ?>
 <!DOCTYPE html>
 <html>
