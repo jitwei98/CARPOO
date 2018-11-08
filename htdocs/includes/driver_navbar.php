@@ -12,10 +12,10 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/carpool/passenger_home">Search for Car Pool</a></li>
-				<li><a href="/carpool/passenger_bids">View Bids</a></li>
-				<li><a href="/carpool/user_profile">User Profile</a></li>
-				<li><a href="/carpool/passenger_history">Car Pool History</a></li>
+				<li><a href="/carpool/offer_form">Offer A Car Pool</a></li>
+				<li><a href="/carpool/driver_home">View Open Offers</a></li>
+				<li><a href="/carpool/car_profile">Car Profile</a></li>
+				<li><a href="/carpool/driver_history">History</a></li>
 				<li><a href="logout.php">Log Out</a></li>
 			</ul>
 		</div>

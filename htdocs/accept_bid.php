@@ -1,6 +1,6 @@
 <?php   session_start();  ?>
 <?php
-	include_once ('includes/check_admin.php');
+	include_once ('includes/check_user.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,12 +55,13 @@
 				if (isset($_POST['accept'])) {
 					// TODO: reject all other bids for the same offer
 					$result = pg_query($db, "UPDATE bid SET status = 'successful' WHERE date_of_ride = '$offer_date' AND time_of_ride = '$offer_time' AND driver = '$driver' AND passenger = '$passenger' AND price = '$price' AND status = 'pending'");
-					$other_result = pg_query($db, "UPDATE bid SET status = 'unsuccessful' WHERE date_of_ride = '$offer_date' AND time_of_ride = '$offer_time' AND driver = '$driver' AND status = 'pending'");
+					// $other_result = pg_query($db, "UPDATE bid SET status = 'unsuccessful' WHERE date_of_ride = '$offer_date' AND time_of_ride = '$offer_time' AND driver = '$driver' AND passenger <> '$passenger' AND status = 'pending'");
 					if (!$result) {
 						echo pg_last_error($db)."<br>";
 					}
 					else {
-						header("Location: /carpool/driver_home");
+						echo "<p>Bid accepted!</p>";
+						// header("Location: /carpool/driver_home");
 					}
 				}
 				?>

@@ -11,20 +11,11 @@
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<style>
-			a {
-				text-decoration: none;
-			}
-		</style>
-	</head>
-	<body>
-		<?php 
-			include_once ('includes/navbar.php');
-		?>
-		<div class="w3-container">
+	<?php
+		include_once ('includes/header.php'); 
+		include_once ('includes/navbar.php');
+	?>
+	<div class="w3-container page_container">
 			<form class="w3-container" method="POST">
 				<h1>Login</h1>
 			    <label for="email"><b>Email</b></label>
