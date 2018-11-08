@@ -13,30 +13,11 @@
   ?>
   <!DOCTYPE html>
   <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<style>
-  	a {
-  		text-decoration: none;
-  	}
-  	td a{ 
-  		display: block; 
-  	}
-  </style>
-</head>
-<body>
-	<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
-		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
-		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
-	</div>
-	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-	  <a href="/carpool/passenger_home" class="w3-bar-item w3-button">Search for Car Pool</a>
-	  <a href="/carpool/passenger_bids" class="w3-bar-item w3-button">View Bids</a>
-	  <a href="/carpool/user_profile" class="w3-bar-item w3-button">User Profile</a>
-	  <a href="/carpool/passenger_history" class="w3-bar-item w3-button">Car Pool History</a>
-	</div>
-	<div style="margin-left: 10%">
+	<?php
+		include_once ('includes/header.php'); 
+		include_once ('includes/passenger_navbar.php');
+	?>
+	<div class="w3-container page_container">
 		<div class="w3-row">
 		    <a href="javascript:void(0)" onclick="openBid(event, 'Accepted');">
 		      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-red">Accepted</div>
@@ -159,20 +140,24 @@
 			?>
 		</div>
 	</div>
-	<script>
-	function openBid(evt, cityName) {
-	  var i, x, tablinks;
-	  x = document.getElementsByClassName("bid_type");
-	  for (i = 0; i < x.length; i++) {
-	     x[i].style.display = "none";
-	  }
-	  tablinks = document.getElementsByClassName("tablink");
-	  for (i = 0; i < x.length; i++) {
-	     tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
-	  }
-	  document.getElementById(cityName).style.display = "block";
-	  evt.currentTarget.firstElementChild.className += " w3-border-red";
-	}
-	</script>
+	<?php
+		include_once ("includes/footer.php");
+	?>
 </body>
 </html>
+
+<script>
+function openBid(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("bid_type");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-border-red";
+}
+</script>
