@@ -9,7 +9,7 @@
 		echo pg_last_error($db)."<br>";
 	} else {
 		session_destroy();
-		header("Location: /carpool");
+		header("Location: /carpool/");
 		// TODO: Display "user deleted!"
 	}
 ?>
