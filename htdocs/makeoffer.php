@@ -17,10 +17,9 @@
 		</style>
 	</head>
 	<body>
-		<div class="w3-container w3-black">
-			<a href="/carpool/home"><h1>Car Pooling</h1></a>
-  			<a href="logout.php" style="float:right;">Log Out</a>
-		</div>
+		<?php 
+			include_once ('includes/navbar.php');
+		?>
 		<div class="w3-container">
 		<?php
 			$email = $_SESSION['use'];

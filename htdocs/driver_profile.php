@@ -24,10 +24,9 @@
   </style>
 </head>
 <body>
-	<div class="w3-container w3-black" style="position:sticky;top:0;width:100%">
-		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
-		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
-	</div>
+	<?php 
+		include_once ('includes/navbar.php');
+	?>
 	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
 		<?php 
 			$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and (date_of_ride = '$date_curr' OR date_of_ride > '$date_curr')");
