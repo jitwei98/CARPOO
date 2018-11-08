@@ -1,10 +1,10 @@
 <?php   session_start();  ?>
 <?php
 	// If session is not set or user is not admin then redirect to Login Page
-if(!isset($_SESSION['use'])) 
-{
-	header("Location: /carpool");  
-}
+	if (!isset($_SESSION['use'])) 
+	{
+		header("Location: /carpool");  
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,13 +25,9 @@ if(!isset($_SESSION['use']))
 		<a href="/carpool/home" style="float:left;"><h1>Car Pooling</h1></a>
 		<a href="logout.php" style="float:right;padding-top: 45px">Log Out</a>
 	</div>
-	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		<a href="/carpool/admin_home" class="w3-bar-item w3-button">app_user</a>
-		<a href="/carpool/admin_bid" class="w3-bar-item w3-button">bid</a>
-		<a href="/carpool/car" class="w3-bar-item w3-button">car</a>
-		<a href="/carpool/admin_drive" class="w3-bar-item w3-button">drive</a>
-		<a href="/carpool/admin_offer" class="w3-bar-item w3-button">offer</a>
-	</div>
+	<?php 
+		include_once ('includes/admin_sidenav.php');
+	?>
 	<div style="margin-left: 10%; margin-top:74px;">
 		<div class="w3-container">
 			<?php 
