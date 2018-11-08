@@ -8,21 +8,12 @@
 
   <!DOCTYPE html>
   <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<style>
-  	a {
-  		text-decoration: none;
-  	}
-  </style>
-</head>
-<body>
-	<?php 
-		include_once ('includes/navbar.php');
+	<?php
+		include_once ('includes/header.php'); 
+		include_once ('includes/passenger_navbar.php');
 	?>
-	<div style="margin-left: 10%">
-		<div class="w3-container">
+	<div class="w3-container page_container">
+		<div class="w3-container form_container">
 			<h1>User Profile</h1>
 			<form class="w3-container" method="POST">
 				<table class="w3-table-all w3-hoverable">
@@ -135,5 +126,8 @@
 			</h1>
 		</div>
 	</div>
+	<?php
+		include_once ("includes/footer.php");
+	?>
 </body>
 </html>
