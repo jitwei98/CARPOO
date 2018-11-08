@@ -12,34 +12,11 @@
 
   <!DOCTYPE html>
   <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<style>
-  	a {
-  		text-decoration: none;
-  	}
-  </style>
-</head>
-<body>
-	<?php 
-		include_once ('includes/navbar.php');
+	<?php
+		include_once ('includes/header.php'); 
+		include_once ('includes/driver_navbar.php');
 	?>
-	<div class="w3-sidebar w3-bar-block w3-dark-gray" style="width:10%"> 
-		<?php 
-			$result = pg_query($db, "SELECT * FROM offer where driver = '$driver' and (date_of_ride = '$date_curr' OR date_of_ride > '$date_curr')");
-			if (pg_num_rows($result) == 0) {
-				echo '<a href="/carpool/offer_form" class="w3-bar-item w3-button">Initiate Car Pool</a>';
-			}
-		  	else {
-		  		echo '<a href="/carpool/driver_home" class="w3-bar-item w3-button">View Car Pool Offers</a>';
-		  	}
-	  	?>
-		<a href="/carpool/car_profile" class="w3-bar-item w3-button">Car Profile</a>
-		<a href="/carpool/driver_profile" class="w3-bar-item w3-button">Driver Profile</a>
-		<a href="#" class="w3-bar-item w3-button">Car Pool History</a>
-	</div>
-	<div style="margin-left: 10%">
+	<div class="w3-container page_container">
 		<div class="w3-container">
 			<h1>Driver Profile</h1>
 			<form class="w3-container" method="POST">
@@ -145,6 +122,9 @@
 				?>
 			</h1>
 		</div>
+		<?php
+			include_once ("includes/footer.php");
+		?>
 	</div>
 </body>
 </html>

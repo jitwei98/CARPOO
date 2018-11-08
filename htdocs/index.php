@@ -2,7 +2,7 @@
 <?php
 	if (isset($_SESSION['use'])){
 		if (($_SESSION['isadmin']) == 'f'){
-			header("Location: /carpool/home"); 
+			header("Location: /carpool/passenger_home"); 
 		}
 		else {
 			header("Location: /carpool/admin_home"); 
@@ -48,7 +48,7 @@
 							$_SESSION['use']=$email;
 							$_SESSION['isadmin'] = $row[isadmin];
 							if (($row[isadmin]) == "f") {
-								header("Location: /carpool/home");	
+								header("Location: /carpool/passenger_home");	
 							} 
 							else {
 								echo $row[isadmin];
