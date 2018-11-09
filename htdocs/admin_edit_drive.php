@@ -18,11 +18,12 @@
 </head>
 <body>
 	<?php 
-		include_once ('includes/navbar.php');
-		include_once ('includes/admin_sidenav.php');
+		// include_once ('includes/navbar.php');
+		// include_once ('includes/admin_sidenav.php');
+		include_once ('includes/header.php');
+		include_once ('includes/admin_navbar.php');
 	?>
-	<div style="margin-left: 10%; margin-top:74px;">
-		<div class="w3-container">
+		<div class="w3-container page_container">
 			<h1>drive</h1>
 			<form class="w3-container" method="POST">
 				<table class="w3-table-all w3-hoverable">
