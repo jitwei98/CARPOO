@@ -1,6 +1,4 @@
-﻿-- Note: Need to figure out which column requires ON UPDATE CASCADE ON DELETE CASCADE
-
-CREATE TABLE IF NOT EXISTS car (
+﻿CREATE TABLE IF NOT EXISTS car (
 	plate_number VARCHAR(8) PRIMARY KEY,
 	model VARCHAR(16) NOT NULL,
 	color VARCHAR(16) NOT NULL
