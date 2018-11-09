@@ -3,8 +3,18 @@
 <html>
 	<?php
 		include_once ('includes/header.php'); 
-		include_once ('includes/navbar.php');
 	?>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="padding-bottom: 15px">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			</button>
+			<a href="/carpool/driver_home" class="navbar-brand"> CARPOOL</a>
+		</div>
+		<div class="collapse navbar-collapse">
+		</div>
+	</div>
+</nav>
 	<div class="w3-container page_container">
 			<form class="w3-container" method="POST">
 				<h1>Register</h1>
