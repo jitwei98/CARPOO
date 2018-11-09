@@ -36,7 +36,9 @@
 			</div>
 			<br>
 			<div class="w3-container">
-			<h1>offer</h1>
+			<h1>offer
+				<small><a href="admin_create_offer.php" style="float: right;">ADD</a></small>
+			</h1>
 			<table class="w3-table-all w3-hoverable">
 				<thead>
 					<tr class="w3-light gray">

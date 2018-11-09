@@ -12,7 +12,9 @@
 		include_once ('includes/admin_navbar.php');
 	?>
 		<div class="w3-container page_container">
-			<h1>app_user</h1>
+			<h1>app_user
+				<small><a href="admin_create_app_user.php" style="float: right;">ADD</a></small>
+			</h1>
 			<table class="w3-table-all w3-hoverable">
 				<thead>
 					<tr class="w3-light gray">

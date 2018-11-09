@@ -4,18 +4,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<style>
-	a {
-		text-decoration: none;
-	}
-	td a { 
-		display: block; 
-	}
-</style>
-</head>
 <body>
 	<?php 
 		// include_once ('includes/navbar.php');
@@ -24,7 +12,9 @@
 		include_once ('includes/admin_navbar.php');
 	?>
 		<div class="w3-container page_container">
-			<h1>car</h1>
+			<h1>car
+				<small><a href="admin_create_car.php" style="float: right;">ADD</a></small>
+			</h1>
 			<table class="w3-table-all w3-hoverable">
 				<thead>
 					<tr class="w3-light gray">
