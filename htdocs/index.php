@@ -11,10 +11,22 @@
 ?>
 <!DOCTYPE html>
 <html>
-	<?php
+<?php
 		include_once ('includes/header.php'); 
-		include_once ('includes/navbar.php');
+		include_once ('includes/home_navbar.php');
 	?>
+
+	<div id="home">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 col-sm-3"></div>
+				<div class="col-md-7 col-sm-9">
+					<h3 style="color: #fff;font-weight: bold;">move the way</h3>
+					<h1 style="color: #fff;font-weight: bold;font-size: 30px;">you want</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="w3-container page_container">
 		<?php
 			include_once ("includes/footer.php");
