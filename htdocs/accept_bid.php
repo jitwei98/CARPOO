@@ -1,6 +1,9 @@
 <?php   session_start();  ?>
 <?php
 	include_once ('includes/check_user.php');
+	include_once ('includes/config.php');
+	$driver = $_SESSION['use'];
+	include_once ('includes/check_driver.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,11 +24,9 @@
 				<?php
 				$offer_date = $_GET['d_offer'];
 				$offer_time = $_GET['t_offer'];
-				$driver = $_SESSION['use'];
 				$passenger = $_GET['passenger'];
 				$price = $_GET['price'];
 
-				include_once ('includes/config.php');
 				$db = pg_connect($conn_str);
 
 				if (isset($_POST['accept'])) {

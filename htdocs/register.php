@@ -52,7 +52,7 @@
 				} 
 				else {
 					$_SESSION['use']=$_POST['email'];
-					header("Location: /carpool/home");
+					header("Location: /carpool/passenger_home");
 				}
 			}
 			?>

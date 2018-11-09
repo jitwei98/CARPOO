@@ -13,7 +13,7 @@
 <html>
 <?php
 		include_once ('includes/header.php'); 
-		include_once ('includes/home_navbar.php');
+		include_once ('includes/navbar.php');
 	?>
 
 	<div id="home">
@@ -27,18 +27,18 @@
 			</div>
 		</div>
 	</div>
-	<div class="w3-container page_container">
+ 	<div class="w3-container page_container">
 		<?php
 			include_once ("includes/footer.php");
 		?>
 	</div>
-	  <div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal fade" id="myLoginModal" role="dialog">
 	    <div class="modal-dialog">
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Login</h4>
+	          <!-- <button type="button" class="close" data-dismiss="modal" style="float: right">&times;</button> -->
+	          <h4 class="modal-title"><span>Login</span></h4>
 	        </div>
 	        <div class="modal-body">
 	        	<form class="w3-container" method="POST">
@@ -57,10 +57,7 @@
 	      </div>
 	    </div>
 	</div>
-	</body>
-</html>
-
-<?php
+			<?php
 			include_once ('includes/config.php');
 			$db = pg_connect($conn_str);
 			if (isset($_POST['login'])) {
@@ -77,7 +74,7 @@
 					if ($pword == $phash) {
 						$_SESSION['use']=$email;
 						$_SESSION['isadmin'] = $row[isadmin];
-						if (($row[isadmin]) == "f") {
+						if (($row[isadmin]) == 'f') {
 							header("Location: /carpool/passenger_home");	
 						} 
 						else {
@@ -92,3 +89,7 @@
 				}
 			}
 		?>
+	</div>
+	</body>
+</html>
+

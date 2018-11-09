@@ -1,6 +1,9 @@
 <?php   session_start();  ?>
 <?php
 	include_once ('includes/check_user.php');
+	include_once ('includes/config.php');
+	$driver = $_SESSION['use'];
+	include_once ('includes/check_driver.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,8 +37,6 @@
 				</form>
 			</div>
 			<?php
-				$driver = $_SESSION['use'];
-				include_once ('includes/config.php');
 				$db = pg_connect($conn_str);
 
 				if(isset($_POST['offer'])) {

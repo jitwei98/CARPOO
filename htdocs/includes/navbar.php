@@ -8,7 +8,8 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li data-toggle="modal" data-target='#myModal'><a href="logout.php">Log In <span class="glyphicon glyphicon-log-in"></span></a></li>
+				<li><a href="/carpool/register">Register <span class="glyphicon glyphicon-user"></span></a></li>
+				<li data-toggle="modal" data-target='#myLoginModal'><a href="#">Log In <span class="glyphicon glyphicon-log-in"></span></a></li>
 			</ul>
 		</div>
 	</div>

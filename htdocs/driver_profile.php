@@ -5,6 +5,7 @@
  	include_once ('includes/config.php');
 	$db = pg_connect($conn_str);
 	$driver = $_SESSION['use'];
+	include_once ('includes/check_driver.php');
 	date_default_timezone_set('Asia/Singapore');
 	$date_curr = date("Y/m/d");
 	$time_curr = date("h/i/sa");
