@@ -2,6 +2,7 @@
 <?php
 	include_once ('includes/check_user.php');
 	include_once ('includes/config.php');
+	$db = pg_connect($conn_str);
 	$driver = $_SESSION['use'];
 	include_once ('includes/check_driver.php');
 ?>

@@ -51,10 +51,10 @@
 						?>
 					</tr>
 				</table>
-				<input class="w3-button w3-khaki" type="submit" name="edit" value="Save" style="float:right;">
+				<input class="w3-button w3-round w3-khaki" type="submit" name="edit" value="Save" style="float:right;">
 				<a href="delete_driver.php" 
 					onclick="return confirm('Are you sure you want to delete your account?')" style="float:left" 
-					class="w3-button w3-red">Delete Driver Account</a>
+					class="w3-button w3-round w3-red">Delete Driver Account</a>
 			</form>
 
 			<h1>

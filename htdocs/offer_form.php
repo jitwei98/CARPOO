@@ -2,6 +2,7 @@
 <?php
 	include_once ('includes/check_user.php');
 	include_once ('includes/config.php');
+	$db = pg_connect($conn_str);
 	$driver = $_SESSION['use'];
 	include_once ('includes/check_driver.php');
 ?>
@@ -33,7 +34,7 @@
 						    <td><input type="text" placeholder="Enter Destination" name="destination" required></td>
 						</tr>
 					</table>
-		      		<input class="w3-button w3-khaki" type="submit" name="offer" value="Initiate Offer" style="float:right;">
+		      		<input class="w3-button w3-round w3-khaki" type="submit" name="offer" value="Initiate Offer" style="float:right;">
 				</form>
 			</div>
 			<?php

@@ -5,7 +5,7 @@
 				<span class="icon icon-bar"></span>
 				<span class="icon icon-bar"></span>
 			</button>
-			<a href="/carpool/driver_home" class="navbar-brand"> CARPOOL</a>
+			<a href="/carpool/" class="navbar-brand"> CARPOOL</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">

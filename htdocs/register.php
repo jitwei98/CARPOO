@@ -9,7 +9,7 @@
 		<div class="navbar-header">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			</button>
-			<a href="/carpool/driver_home" class="navbar-brand"> CARPOOL</a>
+			<a href="/carpool/" class="navbar-brand"> CARPOOL</a>
 		</div>
 		<div class="collapse navbar-collapse">
 		</div>

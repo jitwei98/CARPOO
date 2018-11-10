@@ -26,7 +26,7 @@
 					</div>
 					<div class="w3-cell">
 						<br>
-						<button name="search" class="w3-button w3-black" type="submit">Search</button>
+						<button name="search" class="w3-button w3-round w3-black" type="submit">Search</button>
 					</div>
 				</form>
 				<br>

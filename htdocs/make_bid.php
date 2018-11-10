@@ -14,7 +14,7 @@
 				<form class="w3-container" method="POST">
 					<label for="price"><b>Bid Price : $</b></label>
 					<input type="text" name="price" placeholder="Enter Bid Value">
-		      		<input class="w3-button w3-khaki" type="submit" name="bid" value="Submit Bid">
+		      		<input class="w3-button w3-round w3-khaki" type="submit" name="bid" value="Submit Bid">
 				</form>
 				<?php
 					$passenger = $_SESSION['use'];
